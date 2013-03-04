@@ -15,15 +15,15 @@ public class Dictionary implements IDictionary {
 	HashSet<String> dictionary;
 	
 	public Dictionary() throws IOException {
-		HashSet<String> list = new HashSet<String>();
+		dictionary = new HashSet<String>();
 		
 		//Read entire dictionary from file into hash.
-		File dictionary = new File("dictionary-webster-english");
-		BufferedReader reader = new BufferedReader(new FileReader(dictionary));
+		File file = new File("dictionary-webster-english");
+		BufferedReader reader = new BufferedReader(new FileReader(file));
 		
 		String word;
 		while ((word = reader.readLine()) != null) {
-			list.add(word.toLowerCase());
+			dictionary.add(word.toLowerCase());
 		}
 		reader.close();
 	}
