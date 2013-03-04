@@ -7,17 +7,21 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashSet;
 
-/*
- * Sample class to show how dictionary could work
+/**
+ * Sample class to show how a dictionary can be utilized.
+ * @author Simen
+ *
  */
 public class Dictionary implements IDictionary {
 	//HashSet for constant time when using contains().
 	HashSet<String> dictionary;
 	
+	/**
+	 * Constructor reads the dictionary file to memory.
+	 * @throws IOException
+	 */
 	public Dictionary() throws IOException {
-		dictionary = new HashSet<String>();
-		
-		//Read entire dictionary from file into hash.
+		dictionary = new HashSet<String>();		
 		File file = new File("dictionary-webster-english");
 		BufferedReader reader = new BufferedReader(new FileReader(file));
 		
