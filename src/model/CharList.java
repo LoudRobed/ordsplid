@@ -12,13 +12,24 @@ import java.util.Collections;
  *
  */
 public class CharList {
+	private static CharList instance = null;
+	
 	private ArrayList<Letter> list = new ArrayList<Letter>();
 	
 	/**
 	 * Once initialized, this CharList contains every letter of the english alphabet, with probabilities and points.
 	 */
-	CharList() {
+	private CharList() {
 		fillList();
+	}
+	
+	/**
+	 * Will return the singleton object, if no such object exists, one will be created.
+	 * @return
+	 */
+	static public CharList instance() {
+		if (instance == null) instance = new CharList();
+		return instance;
 	}
 	
 	/**
