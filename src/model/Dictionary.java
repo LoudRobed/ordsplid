@@ -52,6 +52,7 @@ public class Dictionary implements IDictionary {
 	
 	@Override
 	public boolean inDictionary(String word) {
+		if (word.length() <= 1) return false;
 		boolean result = dictionary.contains(word);
 		//System.out.println(result);
 		return result;
