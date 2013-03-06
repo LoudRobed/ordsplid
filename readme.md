@@ -1,1 +1,1 @@
-Something about me!
+TDT4240 - Software Architecture
