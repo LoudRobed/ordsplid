@@ -14,5 +14,5 @@ public interface IPlayer {
 	
 	public int getScore();
 	
-	
+	public void incrementScore(int increment);
 }

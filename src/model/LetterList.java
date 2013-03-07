@@ -5,7 +5,7 @@ import java.util.Collections;
 
 
 /**
- * Automatically generated list of characters.
+ * Class that contains all the different letters used in the game.
  * Statistics about points and probability are collected from scrabble.
  * 
  * @author Simen

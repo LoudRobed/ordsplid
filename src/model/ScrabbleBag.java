@@ -57,7 +57,6 @@ public class ScrabbleBag {
 	/**
 	 * Returns the letter to the bag
 	 * @param l
-	 * @throws ScrabbleBagException 
 	 */
 	public void returnLetter(Letter l) {
 		if (bag.size() > Constants.BAG_SIZE) {
