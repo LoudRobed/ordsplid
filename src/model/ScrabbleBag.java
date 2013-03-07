@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * The bag containing all the current available letters.
  * 
  * It is up to the user to make sure that all letters removed are also returned at some point.
- * If not the bag might run out of letters, and the probabilities will no longer make sense.
+ * If not the bag might run out of letters, and the probabilities will no longer work correctly.
  * @author Simen
  *
  */
@@ -42,9 +42,11 @@ public class ScrabbleBag {
 	 * @return Random letter
 	 * @throws ScrabbleBagException 
 	 */
-	public Letter getRandomLetter() throws ScrabbleBagException {
+	public Letter getRandomLetter() {
 		if (bag.size() <= 0) {
-			throw new ScrabbleBagException("Bag is empty");
+			//throw new ScrabbleBagException("Bag is empty");
+			System.err.println("Bag is empty");
+			return null;
 		}
 		int rand = (int) (Math.random() * bag.size());
 		Letter temp = bag.get(rand);
@@ -57,12 +59,16 @@ public class ScrabbleBag {
 	 * @param l
 	 * @throws ScrabbleBagException 
 	 */
-	public void returnLetter(Letter l) throws ScrabbleBagException {
+	public void returnLetter(Letter l) {
 		if (bag.size() > Constants.BAG_SIZE) {
-			throw new ScrabbleBagException("Bag has reached maximum size");
+			//throw new ScrabbleBagException("Bag has reached maximum size");
+			System.err.println("Bag has reached maximum size");
+			return;
 		}
 		if (countLetter(l) >= l.getTotalPieces()) {
-			throw new ScrabbleBagException("Nocando. Bag is already full of " + l.getLetter());
+			//throw new ScrabbleBagException("Nocando. Bag is already full of " + l.getLetter());
+			System.err.println("Nocando. Bag is already full of " + l.getLetter());
+			return;
 		}
 		bag.add(l);
 	}

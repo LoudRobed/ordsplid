@@ -64,6 +64,23 @@ public class LetterList {
 		return list.get(i);
 	}
 	
+
+	public static ArrayList<Letter> stringToList(String input) {
+		ArrayList<Letter> out = new ArrayList<Letter>();
+		for (int i = 0; i < input.length(); i++) {
+			out.add(instance().get(Character.valueOf(input.charAt(i))));
+		}
+		return out;
+	}
+	
+	public static String listToString(ArrayList<Letter> input) {
+		
+		for (int i = 0; i < input.size(); i++) {
+			
+		}
+		return null;
+	}
+	
 	private void fillList() {
 		//1 point
 		add(Letter.createLetter('a',9,1));
@@ -106,56 +123,7 @@ public class LetterList {
 		add(Letter.createLetter('z',1,10));
 		
 		Collections.sort(list);
-		if (list.size() != 26) System.err.println("Freak out! Missing letters");
+		if (list.size() != Constants.NUMBER_OF_DISTINCT_LETTERS)
+			System.err.println("Freak out! Missing letters");
 	}		
-}
-
-/**
- * Letter class. Contains information about each letter
- * @author Simen
- *
- */
-class Letter implements Comparable<Letter> {
-	private int probability, points, totalPieces;
-	private Character letter;
-	
-	private static int count = 0;
-	
-	private Letter(char letter, int probability, int points) {
-		this.letter = letter;
-		this.probability = probability;
-		this.totalPieces = probability;
-		this.points = points;
-	}
-	
-	/**
-	 * Creates a new letter. Will only create a certain amount of letters, specified in Constants.
-	 * @param letter
-	 * @param probability
-	 * @param points
-	 * @return new Letter object
-	 */
-	public static Letter createLetter(char letter, int probability, int points) {
-		if (count >= Constants.NUMBER_OF_DISTINCT_LETTERS) {
-			System.err.println("You are not allowed to create new letters");
-		}
-		count++;
-		return new Letter(letter,probability,points);
-	}
-	
-	public int getTotalPieces() {
-		return totalPieces;
-	}
-	
-	public int compareTo(Letter another) {
-		return this.letter.compareTo(((Letter) another).letter);
-	}
-	
-	public String toString() {
-		return letter + " - Total pieces: " + totalPieces + " - Points: " + points;
-	}
-	
-	public Character getLetter() {
-		return letter;
-	}
 }
