@@ -11,11 +11,11 @@ import model.ScrabbleBag;
 
 public class WordController {
 
-	private static Dictionary dictionary = Dictionary.instance();
-	private static LetterList letterList = LetterList.instance();
-	private static ScrabbleBag bag = ScrabbleBag.instance();
+	private Dictionary dictionary = Dictionary.instance();
+	private LetterList letterList = LetterList.instance();
+	private ScrabbleBag bag = ScrabbleBag.instance();
 	
-	public static boolean checkWord(ArrayList<Letter> word) {
+	public boolean checkWord(ArrayList<Letter> word) {
 		return dictionary.inDictionary(LetterList.listToString(word));
 	}
 	
@@ -31,7 +31,7 @@ public class WordController {
 	 * Returns the letters used in the word to the ScrabbleBag.
 	 * @param word
 	 */
-	public static void returnWordToBag(ArrayList<Letter> word) {
+	public void returnWordToBag(ArrayList<Letter> word) {
 		for (Letter l: word) bag.returnLetter(l);
 	}
 	
@@ -41,7 +41,7 @@ public class WordController {
 	 * @param amount
 	 * @return
 	 */
-	public static ArrayList<Letter> retrieveNewLettersFromBag(int amount) {
+	public ArrayList<Letter> retrieveNewLettersFromBag(int amount) {
 		ArrayList<Letter> out = new ArrayList<Letter>();
 		for (int i = 0; i < amount; i++) {
 			out.add(bag.getRandomLetter());
