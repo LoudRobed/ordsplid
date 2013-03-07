@@ -4,27 +4,30 @@ import java.util.ArrayList;
 
 /**
  * The bag containing all the current available letters.
+ * 
+ * It is up to the user to make sure that all letters removed are also returned at some point.
+ * If not the bag might run out of letters, and the probabilities will no longer make sense.
  * @author Simen
  *
  */
 public class ScrabbleBag {
-	CharList list;
-	ArrayList<Letter> bag = new ArrayList<Letter>();
+	private LetterList list;
+	private ArrayList<Letter> bag = new ArrayList<Letter>();
 	
 	private static ScrabbleBag instance = null;
 	
 	private ScrabbleBag() {
-		list = CharList.instance();
+		list = LetterList.instance();
 		fillBag();
 	}
 	
-	public ScrabbleBag instance() {
+	public static ScrabbleBag instance() {
 		if (instance == null) instance = new ScrabbleBag();
 		return instance;
 	}
 	
 	/**
-	 * Called only once by constructor
+	 * Fills the bag with letters. Called only once by constructor
 	 */
 	private void fillBag() {
 		for (int i = 0; i < Constants.NUMBER_OF_DISTINCT_LETTERS; i++) {
@@ -34,15 +37,14 @@ public class ScrabbleBag {
 		}
 	}
 	
-	
 	/**
-	 * Removes a random letter from bag 
+	 * Removes a random letter from bag
 	 * @return Random letter
+	 * @throws ScrabbleBagException 
 	 */
-	public Letter getRandomLetter() {
+	public Letter getRandomLetter() throws ScrabbleBagException {
 		if (bag.size() <= 0) {
-			System.err.println("Somone fucked up! Bag is empty");
-			return null;
+			throw new ScrabbleBagException("Bag is empty");
 		}
 		int rand = (int) (Math.random() * bag.size());
 		Letter temp = bag.get(rand);
@@ -53,21 +55,32 @@ public class ScrabbleBag {
 	/**
 	 * Returns the letter to the bag
 	 * @param l
+	 * @throws ScrabbleBagException 
 	 */
-	public void returnLetter(Letter l) {
+	public void returnLetter(Letter l) throws ScrabbleBagException {
 		if (bag.size() > Constants.BAG_SIZE) {
-			System.err.println("Someone fucked up, bag is full!");
-			return;
+			throw new ScrabbleBagException("Bag has reached maximum size");
+		}
+		if (countLetter(l) >= l.getTotalPieces()) {
+			throw new ScrabbleBagException("Nocando. Bag is already full of " + l.getLetter());
 		}
 		bag.add(l);
 	}
 	
-	/**
-	 * Test if the bag is missing the right amount of letters, when the board is filled with letters; 
-	 * @return
-	 */
-	public boolean testBagAtFilledBoard() {
-		return (bag.size() == Constants.BAG_SIZE - (Constants.MATRIX_HEIGHT * Constants.MATRIX_WIDTH));
+	private int countLetter(Letter l) {
+		int count = 0;
+		for (int i = 0; i < bag.size(); i++) {
+			if (bag.get(i) == l) count++;
+		}
+		return count;
 	}
 	
+	public String toString() {
+		String out = "Size : " + bag.size() + "\n";
+		
+		for (int i = 0; i < bag.size(); i++) {
+			out += bag.get(i) + "\n";
+		}
+		return out;
+	}
 }
