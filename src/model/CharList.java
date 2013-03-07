@@ -14,7 +14,7 @@ import java.util.Collections;
 public class CharList {
 	private static CharList instance = null;
 	
-	private ArrayList<Letter> list = new ArrayList<Letter>();
+	private ArrayList<Letter> list = new ArrayList<Letter>(); //Contains one of each letter
 	
 	/**
 	 * Once initialized, this CharList contains every letter of the english alphabet, with probabilities and points.
@@ -117,16 +117,26 @@ public class CharList {
  *
  */
 class Letter implements Comparable<Letter> {
-	int probability, points, maxOnBoard;
-	Character letter;
+	private int probability, points, totalPieces, availablePieces;
+	private Character letter;
+	
 	
 	Letter(char letter, int probability, int points) {
 		this.letter = letter;
 		this.probability = probability;
-		this.maxOnBoard = probability;
+		this.totalPieces = probability;
+		this.availablePieces = probability;
 		this.points = points;
 	}
+	
+	public boolean removeFromBag() {return false;}
+	
+	public boolean addToBag() {return false;}
 
+	public int getTotalPieces() {
+		return totalPieces;
+	}
+	
 	public int compareTo(Letter another) {
 		return this.letter.compareTo(((Letter) another).letter);
 	}
