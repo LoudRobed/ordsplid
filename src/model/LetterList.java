@@ -74,11 +74,11 @@ public class LetterList {
 	}
 	
 	public static String listToString(ArrayList<Letter> input) {
-		
+		String out = "";
 		for (int i = 0; i < input.size(); i++) {
-			
+			out += input.get(i).getLetter();
 		}
-		return null;
+		return out;
 	}
 	
 	private void fillList() {
