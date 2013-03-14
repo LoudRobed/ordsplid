@@ -15,7 +15,7 @@ public class GameView extends Activity{
 	    
 	    Button ok = (Button)findViewById(R.id.game_ok_button);
 	    final EditText text = (EditText)findViewById(R.id.resultString);
-	    
+
 	    ok.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
