@@ -4,6 +4,12 @@ import java.util.ArrayList;
 
 import model.Player;
 
+
+/**
+ * Only test
+ * @author Simen
+ *
+ */
 public class PlayerController {
 	ArrayList<Player> players = new ArrayList<Player>();
 	Player currentPlayer = null;
