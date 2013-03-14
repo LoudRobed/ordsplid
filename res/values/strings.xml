@@ -6,5 +6,6 @@
     <string name="title_activity_ordsplid">Ordsplid</string>
     <string name="new_game_button">New Game</string>
     <string name="setting_button">Settings</string>
+    <string name="game_ok_button"></string>
 
 </resources>
