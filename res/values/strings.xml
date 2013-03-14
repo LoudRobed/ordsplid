@@ -8,5 +8,6 @@
     <string name="setting_button">Settings</string>
     <string name="number_of_players">Number of players</string>
     <string name="start_game">Start game</string>
+    <string name="game_ok_button"></string>
 
 </resources>

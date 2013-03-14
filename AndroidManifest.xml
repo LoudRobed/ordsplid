@@ -21,6 +21,7 @@
             </intent-filter>
         </activity>
         <activity android:name="view.SettingsView"></activity>
+        <activity android:name="view.GameView"></activity>
     </application>
 
 </manifest>

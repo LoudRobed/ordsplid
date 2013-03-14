@@ -1,0 +1,83 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentTop="true"
+    android:orientation="vertical" >
+
+    <EditText
+        android:id="@+id/resultString"
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        android:clickable="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:text="Test yes" >
+
+        <requestFocus />
+    </EditText>
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:rowCount="4"
+        android:columnCount="4">
+        <Button 
+            android:id="@+id/mButton1"
+            android:text="A"
+            android:layout_row="0"
+            android:layout_column="0"
+            />
+        <Button 
+            android:id="@+id/mButton2"
+            android:text="B"
+            android:layout_row="0"
+            android:layout_column="1"
+            />
+        <Button 
+            android:id="@+id/mButton3"
+            android:text="C"
+            android:layout_row="0"
+            android:layout_column="2"
+            />
+         <Button 
+            android:id="@+id/mButton4"
+            android:text="D"
+            android:layout_row="0"
+            android:layout_column="3"
+            />
+        <Button 
+            android:id="@+id/mButton5"
+            android:text="E"
+            android:layout_row="1"
+            android:layout_column="0"
+            />
+        <Button 
+            android:id="@+id/mButton6"
+            android:text="F"
+            android:layout_row="1"
+            android:layout_column="1"
+            />
+        <Button 
+            android:id="@+id/mButton7"
+            android:text="G"
+            android:layout_row="1"
+            android:layout_column="2"
+            />
+         <Button 
+            android:id="@+id/mButton8"
+            android:text="H"
+            android:layout_row="1"
+            android:layout_column="3"
+            />
+    </GridLayout>
+
+    <Button
+        android:id="@+id/game_ok_button"
+        android:layout_width="312dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="50dp"
+        android:text="@string/game_ok_button" />
+
+</LinearLayout>
