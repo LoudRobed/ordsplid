@@ -2,7 +2,6 @@ package view;
 
 import java.util.ArrayList;
 
-import controller.WordController;
 import model.Letter;
 import android.content.Context;
 import android.view.View;
@@ -10,10 +9,12 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import controller.WordController;
 
 public class ButtonAdapter extends BaseAdapter{
 	private Context mContext;
 	private WordController wController = new WordController();
+	ArrayList<Letter> s = wController.retrieveNewLettersFromBag(16);
 	
     // Declare button click listener variable
     private OnClickListener mOnButtonClick;
@@ -39,6 +40,9 @@ public class ButtonAdapter extends BaseAdapter{
         return 0;
     }
 
+    public ArrayList<Letter> getInUseList(){
+    	return s;
+    }
       
     // create a new ImageView for each item referenced by the Adapter
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -53,9 +57,8 @@ public class ButtonAdapter extends BaseAdapter{
         }
         
         //Get a random letter from the scrabblebag and set it to the button
-        ArrayList<Letter> s = wController.retrieveNewLettersFromBag(1);
-        
-        btn.setText(s.get(0).toString().substring(0, 1));
+        btn.setId(position);
+        btn.setText(s.get(position).toString().substring(0, 1));
         return btn;
     }
 }
