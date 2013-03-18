@@ -24,6 +24,15 @@ public class MainActivity extends Activity  {
 				MainActivity.this.startActivity(myIntent);
 			}
 		});
+		
+		settingsButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent myIntent = new Intent(MainActivity.this, SettingsView.class);
+				MainActivity.this.startActivity(myIntent);
+			}
+		});
+
 
 	}
 }
