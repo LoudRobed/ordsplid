@@ -18,6 +18,7 @@ public class SettingsView extends Activity  {
 	static Button startGameButton;
 	static SettingsView instance;
 	
+	//Singleton
 	public static SettingsView instance() {
 		return instance;
 	}
