@@ -5,8 +5,13 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.HashSet;
 import java.util.Locale;
+
+import android.content.Context;
+import android.content.res.AssetManager;
 
 /**
  * Sample class to show how a dictionary can be utilized.
@@ -16,29 +21,38 @@ import java.util.Locale;
 public class Dictionary implements IDictionary {
 	
 	private static Dictionary instance = null;
+	private static boolean isCreated = false;
+	
 	
 	//HashSet for constant time when using contains().
 	HashSet<String> dictionary;
 	
-	/**
-	 * Constructor reads the dictionary file to memory.
-	 * @throws IOException
-	 */
-	private Dictionary() {
+	private Dictionary() {}
+	
+	public void create(Context context) {
+		if (isCreated) return;
 		try {
+
+			AssetManager am = context.getAssets();
+			InputStream is = am.open("dictionary-webster-english");
+			
 			dictionary = new HashSet<String>();		
-			File file = new File("dictionary-webster-english");
-			BufferedReader reader = new BufferedReader(new FileReader(file));
+			
+			BufferedReader reader = new BufferedReader(new InputStreamReader(is));
 			
 			String word;
 			while ((word = reader.readLine()) != null) {
 				dictionary.add(word.toLowerCase(Locale.US));
 			}
 			reader.close();
+
+			isCreated = true;
+
+			
+		} catch (IOException e) {
+			System.out.println("FAILFAILFAIL");
 		}
-		catch (IOException e) {
-			e.printStackTrace();
-		}
+		
 	}
 	
 	/**

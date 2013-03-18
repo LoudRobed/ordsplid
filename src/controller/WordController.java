@@ -16,7 +16,10 @@ public class WordController {
 	private ScrabbleBag bag = ScrabbleBag.instance();
 	
 	public boolean checkWord(ArrayList<Letter> word) {
-		return dictionary.inDictionary(LetterList.listToString(word));
+		System.out.println(LetterList.listToString(word));
+		boolean inDictionary = dictionary.inDictionary(LetterList.listToString(word));
+		System.out.println(inDictionary);
+		return inDictionary;
 	}
 	
 	public static int calculateWordScore(ArrayList<Letter> word) {
