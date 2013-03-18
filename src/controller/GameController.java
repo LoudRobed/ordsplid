@@ -1,7 +1,7 @@
 package controller;
 
 
-public class GameController implements IGameController {
+public class GameController {
 	
 	public void newGame() {
 		

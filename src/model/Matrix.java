@@ -1,5 +1,5 @@
 package model;
-
+//not in use
 public class Matrix implements IMatrix{
 	private static Matrix instance = null;
 	private char[][] m;
