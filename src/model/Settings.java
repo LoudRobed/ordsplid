@@ -9,6 +9,7 @@ public class Settings {
 		
 	}
 	
+	//Settings
 	public static Settings instance() {
 		if (instance == null) instance = new Settings();
 		return instance;

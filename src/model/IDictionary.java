@@ -7,7 +7,7 @@ package model;
  *
  */
 public interface IDictionary {
-
+	
 	public boolean inDictionary(String word);
 	
 }
