@@ -2,12 +2,14 @@ package controller;
 
 import model.Settings;
 import tdt4240.ordsplid.R;
+import view.GameView;
 import view.MainActivity;
 import view.SettingsView;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -17,15 +19,20 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class SettingsController {
-	static Settings settings = Settings.instance();
+	private static Settings settings = Settings.instance();
+	private static SettingsController instance = null;
 	
-	public SettingsController() {
-			
+	private SettingsController() {}
+	
+	static public SettingsController instance() {
+		if (instance == null) instance = new SettingsController();
+		return instance;
 	}
 	
-	static public class ClickListener implements OnClickListener {
+	static public class SettingsViewButtonListener implements OnClickListener {
 		public void onClick(View v) {
 			
 			try {
@@ -33,41 +40,14 @@ public class SettingsController {
 				int turnTime = Integer.parseInt(SettingsView.getTurnTime());
 				settings.setNumberOfPlayers(numberOfPlayers);
 				settings.setTurnTime(turnTime);
-				SettingsView.instance().startActivity(MainActivity.class);
+				SettingsView.instance().startActivity(GameView.class);
 			}
 			catch (NumberFormatException e) {
-				SettingsDialog dialog = new SettingsDialog();
-				dialog.start();
+				SettingsView.instance().displayToast("Please enter number");
 				e.printStackTrace();
 			}
-			
-
-			
+						
 		}
 	}
-}
-
-class SettingsDialog extends DialogFragment {
-    public void start() {
-    	show(getFragmentManager(), "missiles");
-    }
 	
-	@Override
-    public Dialog onCreateDialog(Bundle savedInstanceState) {
-        // Use the Builder class for convenient dialog construction
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setMessage("Nope")
-               .setPositiveButton("Button things", new DialogInterface.OnClickListener() {
-                   public void onClick(DialogInterface dialog, int id) {
-                       // FIRE ZE MISSILES!
-                   }
-               })
-               .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                   public void onClick(DialogInterface dialog, int id) {
-                       // User cancelled the dialog
-                   }
-               });
-        // Create the AlertDialog object and return it
-        return builder.create();
-    }
 }

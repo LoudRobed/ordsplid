@@ -43,7 +43,7 @@ public class Letter implements Comparable<Letter> {
 	}
 	
 	public String toString() {
-		return letter + " - Total pieces: " + totalPieces + " - Points: " + points;
+		return "" + letter;
 	}
 	
 	public Character getLetter() {

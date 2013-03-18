@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import model.Letter;
 import android.content.Context;
+import android.graphics.Color;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -13,8 +14,10 @@ import controller.WordController;
 
 public class ButtonAdapter extends BaseAdapter{
 	private Context mContext;
-	private WordController wController = new WordController();
+	private WordController wController = WordController.instance();
 	ArrayList<Letter> s = wController.retrieveNewLettersFromBag(16);
+	private ArrayList<Button> buttonList = new ArrayList<Button>();
+	
 	
     // Declare button click listener variable
     private OnClickListener mOnButtonClick;
@@ -33,7 +36,7 @@ public class ButtonAdapter extends BaseAdapter{
     }
 
     public Object getItem(int position) {
-        return null;
+        return buttonList.get(position);
     }
 
     public long getItemId(int position) {
@@ -43,22 +46,45 @@ public class ButtonAdapter extends BaseAdapter{
     public ArrayList<Letter> getInUseList(){
     	return s;
     }
+    
       
     // create a new ImageView for each item referenced by the Adapter
     public View getView(int position, View convertView, ViewGroup parent) {
-        Button btn;
+        MatrixButton btn;
         if (convertView == null) {  // if it's not recycled, initialize some attributes
-            btn = new Button(mContext);
+            btn = new MatrixButton(mContext);
             //btn.setLayoutParams(new GridView.LayoutParams(85, 85));
             btn.setPadding(8, 8, 8, 8);
             btn.setOnClickListener(mOnButtonClick);
         } else {
-            btn = (Button) convertView;
+            btn = (MatrixButton) convertView;
         }
-        
+        buttonList.add(btn);
         //Get a random letter from the scrabblebag and set it to the button
         btn.setId(position);
-        btn.setText(s.get(position).toString().substring(0, 1));
+        btn.setLetter(s.get(position));
+        btn.setBackgroundColor(Color.LTGRAY);
         return btn;
     }
+}
+
+
+//Added new class to store letter-object in buttons
+class MatrixButton extends Button {
+	private Letter letter;
+	
+	public MatrixButton(Context context) {
+		super(context);
+	}
+	
+	public void setLetter(Letter letter) {
+		this.letter = letter;
+		setText(letter.toString());
+	}
+	
+	public Letter getLetter() {
+		return letter;
+	}
+	
+	
 }

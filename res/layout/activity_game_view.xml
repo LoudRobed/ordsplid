@@ -4,16 +4,18 @@
     android:layout_height="fill_parent"
     android:layout_alignParentLeft="true"
     android:layout_alignParentTop="true"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    >
 
     <EditText
         android:id="@+id/resultString"
-        android:layout_width="230dp"
-        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_height="100dp"
         android:clickable="false"
         android:focusable="false"
         android:focusableInTouchMode="false"
-        android:text="Test yes" >
+        android:textSize="40sp"
+        >
     </EditText>
 
     <GridView
@@ -33,7 +35,7 @@
     <Button
         android:id="@+id/game_ok_button"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="500dp"
         android:text="@string/game_ok_button"
         android:layout_below="@+id/gridview"/>
 

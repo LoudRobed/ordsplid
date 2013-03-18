@@ -11,18 +11,24 @@ import model.ScrabbleBag;
 
 public class WordController {
 
+	private static WordController instance = null;
 	private Dictionary dictionary = Dictionary.instance();
-	private LetterList letterList = LetterList.instance();
-	private ScrabbleBag bag = ScrabbleBag.instance();
+	private ScrabbleBag bag = new ScrabbleBag();
 	
 	public boolean checkWord(ArrayList<Letter> word) {
-		System.out.println(LetterList.listToString(word));
 		boolean inDictionary = dictionary.inDictionary(LetterList.listToString(word));
-		System.out.println(inDictionary);
 		return inDictionary;
 	}
 	
-	public static int calculateWordScore(ArrayList<Letter> word) {
+	private WordController() {
+	}
+	
+	static public WordController instance() {
+		if (instance == null) instance = new WordController();
+		return instance;
+	}
+	
+	public int calculateWordScore(ArrayList<Letter> word) {
 		int score = 0;
 		for (int i = 0; i < word.size(); i++) {
 			score += word.get(i).getPoints();
@@ -50,6 +56,10 @@ public class WordController {
 			out.add(bag.getRandomLetter());
 		}
 		return out;	
+	}
+	
+	public void resetScrabbleBag() {
+		bag = new ScrabbleBag();
 	}
 	
 }

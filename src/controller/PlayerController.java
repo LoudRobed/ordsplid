@@ -11,10 +11,19 @@ import model.Player;
  *
  */
 public class PlayerController {
-	ArrayList<Player> players = new ArrayList<Player>();
-	Player currentPlayer = null;
+	private ArrayList<Player> players = null;
+	private Player currentPlayer = null;
+	private static PlayerController instance;
 	
-	PlayerController(int numberOfPlayers) {
+	private PlayerController() {}
+	
+	public static PlayerController instance() {
+		if (instance == null) instance = new PlayerController();
+		return instance;
+	}
+	
+	public void setNumberOfPlayers(int numberOfPlayers) {
+		players = new ArrayList<Player>();
 		if (numberOfPlayers <= 0) return;
 		for (int i = 0; i < numberOfPlayers; i++) {
 			players.add(new Player());
@@ -23,6 +32,11 @@ public class PlayerController {
 	}
 	
 	public void setNames(String[] names) {
+	}
+	
+	public int getScoreForCurrentPlayer() {
+		if (currentPlayer == null) return -1;
+		return currentPlayer.getScore();
 	}
 	
 	public void updateScoreOfCurrentPlayer(int increment) {

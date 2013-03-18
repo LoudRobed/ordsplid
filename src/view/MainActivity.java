@@ -1,8 +1,11 @@
 package view;
 
+import controller.PlayerController;
+import controller.SettingsController;
 import model.Dictionary;
 import tdt4240.ordsplid.R;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -13,9 +16,13 @@ public class MainActivity extends Activity  {
 
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
-	    Dictionary.instance().create(this);
 	    
 	    setContentView(R.layout.activity_ordsplid);
+	    
+	    
+		Dictionary.instance().create(getApplicationContext());
+		  	   
+	    
 	    
 		Button newGameButton = (Button) findViewById(R.id.new_game_button);
 		Button settingsButton = (Button) findViewById(R.id.settings_button);

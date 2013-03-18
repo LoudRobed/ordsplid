@@ -14,22 +14,14 @@ public class ScrabbleBag {
 	private LetterList list;
 	private ArrayList<Letter> bag = new ArrayList<Letter>();
 	
-	private static ScrabbleBag instance = null;
 	
-	private ScrabbleBag() {
+	public ScrabbleBag() {
 		list = LetterList.instance();
 		fillBag();
 	}
 	
-	public static ScrabbleBag instance() {
-		if (instance == null) instance = new ScrabbleBag();
-		return instance;
-	}
 	
-	/**
-	 * Fills the bag with letters. Called only once by constructor
-	 */
-	private void fillBag() {
+	public void fillBag() {
 		for (int i = 0; i < Constants.NUMBER_OF_DISTINCT_LETTERS; i++) {
 			for (int k = 0; k < list.get(i).getTotalPieces(); k++) {
 				bag.add(list.get(i));
