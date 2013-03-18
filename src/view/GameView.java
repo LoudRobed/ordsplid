@@ -19,8 +19,7 @@ public class GameView extends Activity{
 	private String s = "";
 	private WordController wController = new WordController();
 	private ArrayList<Letter> currentWord = new ArrayList<Letter>();
-	
-	
+	private Button prevClickedBtn;
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.activity_game_view);
@@ -46,11 +45,16 @@ public class GameView extends Activity{
 				s += temp.getText();
 				currentWord.add(btnAdapter.getInUseList().get(temp.getId()));
 				text.setText(s);
+				temp.setBackgroundColor(Color.YELLOW);
 				if(!wController.checkWord(currentWord)){
 					ok.setBackgroundColor(Color.RED);
 				}else{
 					ok.setBackgroundColor(Color.GREEN);
 				}
+				if(s.length() > 1){
+					prevClickedBtn.setBackgroundColor(Color.BLUE);
+				}
+				prevClickedBtn = temp;
 			}
 		});
 	    
