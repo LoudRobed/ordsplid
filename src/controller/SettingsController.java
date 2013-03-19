@@ -46,21 +46,19 @@ public class SettingsController {
 			try {
 				int numberOfPlayers = Integer.parseInt(SettingsView.instance().getNumberOfPlayers());
 				settings.setNumberOfPlayers(numberOfPlayers);
-
+			} catch(NumberFormatException e) {}
+			
+			try {
 				int turnTime = Integer.parseInt(SettingsView.instance().getTurnTime());
 				settings.setTurnTime(turnTime);
-				
+			} catch(NumberFormatException e) {}
+			
+			try {
 				int numberOfTurns = Integer.parseInt(SettingsView.instance().getNumberOfTurns());
 				settings.setNumberOfTurns(numberOfTurns);
-				
-				Intent myIntent = new Intent(SettingsView.instance(), GameView.class);
-				SettingsView.instance().startActivity(myIntent);
-			}
-			catch (NumberFormatException e) {
-				
-			}
-			SettingsController.instance().saveSettings(SettingsView.instance());
+			} catch(NumberFormatException e) {}
 			
+			SettingsController.instance().saveSettings(SettingsView.instance());
 						
 		}
 	}
