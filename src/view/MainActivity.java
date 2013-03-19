@@ -1,8 +1,10 @@
 package view;
 
 import controller.GameController;
+import controller.MainController;
 import controller.PlayerController;
 import controller.SettingsController;
+import controller.WordController;
 import model.Dictionary;
 import tdt4240.ordsplid.R;
 import android.app.Activity;
@@ -21,9 +23,7 @@ public class MainActivity extends Activity  {
 	    setContentView(R.layout.activity_ordsplid);
 	    
 	    
-		Dictionary.instance().create(getApplicationContext());
-	    GameController.instance().setOngoingGame(false);
-
+		MainController.instance().onStartup(getApplicationContext());
 	    
 	    
 		Button newGameButton = (Button) findViewById(R.id.new_game_button);

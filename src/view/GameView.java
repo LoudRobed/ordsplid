@@ -172,6 +172,7 @@ public class GameView extends Activity{
 		
 		builder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
 	           public void onClick(DialogInterface dialog, int id) {
+	        	   //GameController.instance().nextPlayer();
 	        	   GameView.super.onBackPressed();
 	           }
 	       });
