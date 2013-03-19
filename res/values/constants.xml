@@ -1,4 +1,6 @@
 
     <resources>
         <dimen name="ordsplid_button_width">300px</dimen>
+        <color name="black">#000</color>
+        <color name="white">#ffffffff</color>
     </resources>

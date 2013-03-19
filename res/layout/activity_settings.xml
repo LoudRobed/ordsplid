@@ -1,43 +1,36 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical" >
 
-   <TextView
-       android:id="@+id/textView2"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:layout_above="@+id/turn_time"
-       android:layout_alignLeft="@+id/start_game_button"
-       android:text="@string/turn_time"
-       android:textAppearance="?android:attr/textAppearanceMedium" />
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/number_of_players"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
-   <TextView
-       android:id="@+id/textView1"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:layout_above="@+id/number_of_players"
-       android:layout_centerHorizontal="true"
-       android:text="@string/number_of_players"
-       android:textAppearance="?android:attr/textAppearanceMedium" />
+    <EditText
+        android:id="@+id/number_of_players"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/number_of_players"
+        android:inputType="numberSigned" />
 
-   <EditText
-       android:id="@+id/number_of_players"
-       android:layout_width="fill_parent"
-       android:layout_height="wrap_content"
-       android:layout_above="@+id/textView2"
-       android:layout_alignParentLeft="true"
-       android:layout_marginBottom="18dp"
-       android:ems="10"
-       android:hint="@string/number_of_players"
-       android:inputType="numberSigned" />
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/turn_time"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
    <EditText
        android:id="@+id/turn_time"
        android:layout_width="fill_parent"
        android:layout_height="wrap_content"
-       android:layout_above="@+id/textView3"
-       android:layout_alignParentLeft="true"
        android:layout_marginBottom="17dp"
        android:ems="10"
        android:hint="@string/turn_time"
@@ -47,8 +40,6 @@
        android:id="@+id/textView3"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
-       android:layout_centerHorizontal="true"
-       android:layout_centerVertical="true"
        android:text="@string/number_of_turns"
        android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -56,8 +47,6 @@
        android:id="@+id/number_of_turns"
        android:layout_width="fill_parent"
        android:layout_height="wrap_content"
-       android:layout_alignParentLeft="true"
-       android:layout_below="@+id/textView3"
        android:ems="10"
        android:hint="@string/number_of_turns"
        android:inputType="numberSigned" />
@@ -66,9 +55,7 @@
        android:id="@+id/start_game_button"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
-       android:layout_below="@+id/number_of_turns"
-       android:layout_centerHorizontal="true"
        android:layout_marginTop="30dp"
        android:text="@string/start_game" />
 
-</RelativeLayout>
+</LinearLayout>

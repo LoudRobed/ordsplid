@@ -1,27 +1,56 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:layout_alignParentLeft="true"
-    android:layout_alignParentTop="true"
+    android:gravity="center"
     android:orientation="vertical"
     >
-
-    <EditText
-        android:id="@+id/resultString"
+	
+    <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="100dp"
-        android:clickable="false"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
+        android:layout_height="0dp"
+        android:layout_weight="0.7"
+        android:background="@color/black"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <TextView
+			android:id="@+id/playerNameView"
+            style="@style/topBarView"
+            android:paddingLeft="10dp"
+			android:gravity="center_vertical|left"
+            />
+        
+        <TextView
+			android:id="@+id/scoreView"
+			style="@style/topBarView"
+			android:gravity="center"
+        
+            />
+        <TextView
+			android:id="@+id/timerView"
+			
+			android:gravity="center_vertical|right"
+			android:text="Timer"
+			android:paddingRight="10dp"
+			style="@style/topBarView"
+			/>
+    </LinearLayout>
+        
+    <TextView
+        android:id="@+id/wordView"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginBottom="20dp"
+        android:gravity="center"
         android:textSize="40sp"
-        >
-    </EditText>
+        />
 
     <GridView
-        android:id="@+id/gridview"
+        android:id="@+id/gridView"
         android:layout_width="wrap_content"
-        android:layout_height="329dp"
+        android:layout_height="wrap_content"
         android:columnWidth="90dp"
         android:gravity="center"
         android:horizontalSpacing="10dp"
@@ -30,13 +59,14 @@
         android:paddingRight="30dp"
         android:stretchMode="columnWidth"
         android:verticalSpacing="10dp"
-        android:layout_below="@+id/resultString" />
+        />
 
     <Button
         android:id="@+id/game_ok_button"
         android:layout_width="fill_parent"
-        android:layout_height="500dp"
-        android:text="@string/game_ok_button"
-        android:layout_below="@+id/gridview"/>
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="20dp"
+        android:text="@string/game_ok_button" />
 
-</RelativeLayout>
+</LinearLayout>

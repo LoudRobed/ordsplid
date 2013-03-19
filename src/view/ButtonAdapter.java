@@ -80,7 +80,11 @@ class MatrixButton extends Button {
 	
 	public void setLetter(Letter letter) {
 		this.letter = letter;
-		setText(letter.toString());
+		setText(toString());
+	}
+	
+	public String toString() {
+		return letter.toString();
 	}
 	
 	public Letter getLetter() {

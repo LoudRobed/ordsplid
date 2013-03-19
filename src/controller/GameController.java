@@ -34,18 +34,37 @@ public class GameController {
 	public void newGame() {
 		playerController.setNumberOfPlayers(SettingsController.instance().getNumberOfPlayers());
 		wordController.resetScrabbleBag();
+		
 	}
+	
+	public void updateInfoBar() {
+		updateScoreInView();
+		updatePlayerNameInView();
+	}
+	
+	private void updateScoreInView() {
+		int playerScore = playerController.getScoreForCurrentPlayer();
+		
+		GameView.instance().setScore("" + playerScore);
+	}
+	
+	private void updatePlayerNameInView() {
+		String name = PlayerController.instance().getNameOfCurrentPlayer();
+		
+		GameView.instance().setPlayerName(name);
+	}
+	
+	
 
 	public void submitWord(ArrayList<Letter> word) {
 		int wordScore = wordController.calculateWordScore(word);
 		wordController.returnWordToBag(word);
 		playerController.updateScoreOfCurrentPlayer(wordScore);
 		
-		int playerScore = playerController.getScoreForCurrentPlayer();
-		String name = PlayerController.instance().getNameOfCurrentPlayer();
 		word = wordController.retrieveNewLettersFromBag(word.size());
 		GameView.instance().switchLetters(word);
-		GameView.instance().displayToast(name + "\nWordscore: " + wordScore + "\nTotal score: " + playerScore);
+		GameView.instance().displayToast("Wordscore: " + wordScore);
+		updateScoreInView();
 	}
 	
 	/**
@@ -56,6 +75,7 @@ public class GameController {
 		WordController.instance().resetScrabbleBag();
 		Intent myIntent = new Intent(GameView.instance(), GameView.class);
 		GameView.instance().startActivity(myIntent);
+		updateInfoBar();
 	}
 	
 	
@@ -67,6 +87,7 @@ public class GameController {
 		
 		nextRound();
 	}
+	
 	
 	
 	

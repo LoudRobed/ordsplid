@@ -30,7 +30,7 @@ public class Dictionary implements IDictionary {
 		try {
 
 			AssetManager am = context.getAssets();
-			InputStream is = am.open("dictionary-webster-english");
+			InputStream is = am.open("dictionary");
 			
 			dictionary = new HashSet<String>();		
 			
