@@ -75,6 +75,7 @@ class MatrixButton extends Button {
 	
 	public MatrixButton(Context context) {
 		super(context);
+		setDeselected();
 	}
 	
 	public void setLetter(Letter letter) {
@@ -84,6 +85,18 @@ class MatrixButton extends Button {
 	
 	public Letter getLetter() {
 		return letter;
+	}
+	
+	public void setSelected() {
+		setBackgroundColor(Color.BLUE);
+	}
+	
+	public void setDeselected() {
+		setBackgroundColor(Color.LTGRAY);
+	}
+	
+	public void setNewestSelected() {
+		setBackgroundColor(Color.YELLOW);
 	}
 	
 	

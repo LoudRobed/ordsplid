@@ -1,5 +1,6 @@
 package view;
 
+import controller.GameController;
 import controller.PlayerController;
 import controller.SettingsController;
 import model.Dictionary;
@@ -21,7 +22,8 @@ public class MainActivity extends Activity  {
 	    
 	    
 		Dictionary.instance().create(getApplicationContext());
-		  	   
+	    GameController.instance().setOngoingGame(false);
+
 	    
 	    
 		Button newGameButton = (Button) findViewById(R.id.new_game_button);

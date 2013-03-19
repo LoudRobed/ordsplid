@@ -40,7 +40,9 @@ public class SettingsController {
 				int turnTime = Integer.parseInt(SettingsView.getTurnTime());
 				settings.setNumberOfPlayers(numberOfPlayers);
 				settings.setTurnTime(turnTime);
-				SettingsView.instance().startActivity(GameView.class);
+				
+				Intent myIntent = new Intent(SettingsView.instance(), GameView.class);
+				SettingsView.instance().startActivity(myIntent);
 			}
 			catch (NumberFormatException e) {
 				SettingsView.instance().displayToast("Please enter number");

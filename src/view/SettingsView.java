@@ -36,11 +36,6 @@ public class SettingsView extends Activity  {
 
 	}
 	
-	public void startActivity(Class activityClass) {
-		Intent myIntent = new Intent(SettingsView.this, activityClass);
-		SettingsView.this.startActivity(myIntent);
-	}
-	
 	public static String getNumberOfPlayers() {
 		return numberOfPlayersField.getText().toString();
 	}

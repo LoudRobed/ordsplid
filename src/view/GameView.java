@@ -32,7 +32,7 @@ public class GameView extends Activity{
 	private String s = "";
 	private WordController wController = WordController.instance();
 	private ArrayList<Letter> currentWord = new ArrayList<Letter>();
-	private Button prevClickedBtn;
+	private MatrixButton prevClickedBtn;
 	private ArrayList<MatrixButton> activeButtons;
 	private Button ok;
 	
@@ -42,8 +42,7 @@ public class GameView extends Activity{
 	    super.onCreate(savedInstanceState);
 	    instance = this;
 	    
-	    GameController.instance().newGame();
-	    
+	    GameController.instance().setOngoingGame(true);
 	    
 	    setContentView(R.layout.activity_game_view);
 	    
@@ -71,10 +70,10 @@ public class GameView extends Activity{
 					activeButtons.remove(temp);
 					s = s.substring(0, s.length() - 1);
 					text.setText(s);
-					temp.setBackgroundColor(Color.LTGRAY);
+					temp.setDeselected();
 					if (activeButtons.size() > 0) {
 						prevClickedBtn = activeButtons.get(activeButtons.size() - 1);
-						prevClickedBtn.setBackgroundColor(Color.YELLOW);
+						prevClickedBtn.setNewestSelected();
 					}
 					
 				}
@@ -86,10 +85,10 @@ public class GameView extends Activity{
 					currentWord.add(temp.getLetter());
 					activeButtons.add(temp);
 					text.setText(s);
-					temp.setBackgroundColor(Color.YELLOW);
+					temp.setNewestSelected();
 					
 					if(s.length() > 1){
-						prevClickedBtn.setBackgroundColor(Color.BLUE);
+						prevClickedBtn.setSelected();
 					}
 					prevClickedBtn = temp;
 				}
@@ -153,21 +152,18 @@ public class GameView extends Activity{
 	}
 	
 	public void clearScreen() {
-		for (Button button : activeButtons) {
-			button.setBackgroundColor(Color.LTGRAY);
+		for (MatrixButton button : activeButtons) {
+			button.setDeselected();
 			
 		}
-		clearArrays();
+		activeButtons = new ArrayList<MatrixButton>();
+		currentWord = new ArrayList<Letter>();
+		
 		s = "";
 		text.setText(s);
 		updateOKButton();
 	}
 	
-	public void clearArrays() {
-		activeButtons = new ArrayList<MatrixButton>();
-		currentWord = new ArrayList<Letter>();
-		
-	}
 	
 	@Override
 	public void onBackPressed() {
