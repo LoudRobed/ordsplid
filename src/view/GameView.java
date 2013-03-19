@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import model.Letter;
 import tdt4240.ordsplid.R;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -32,7 +34,7 @@ public class GameView extends Activity{
 	private ArrayList<Letter> currentWord = new ArrayList<Letter>();
 	private Button prevClickedBtn;
 	private ArrayList<MatrixButton> activeButtons;
-	private Button ok; 
+	private Button ok;
 	
     private EditText text;
 
@@ -165,5 +167,25 @@ public class GameView extends Activity{
 		activeButtons = new ArrayList<MatrixButton>();
 		currentWord = new ArrayList<Letter>();
 		
+	}
+	
+	@Override
+	public void onBackPressed() {
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setMessage("Current game will be deleted").setTitle("Are you sure you want to exit?");
+		
+		builder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
+	           public void onClick(DialogInterface dialog, int id) {
+	        	   GameView.super.onBackPressed();
+	           }
+	       });
+		builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+	           public void onClick(DialogInterface dialog, int id) {
+	               dialog.dismiss();
+	           }
+	       });
+		AlertDialog dialog = builder.create();
+		
+		dialog.show();
 	}
 }
