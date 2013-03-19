@@ -2,6 +2,8 @@ package controller;
 
 import java.util.ArrayList;
 
+import view.GameView;
+
 import model.Player;
 
 
@@ -26,12 +28,9 @@ public class PlayerController {
 		players = new ArrayList<Player>();
 		if (numberOfPlayers <= 0) return;
 		for (int i = 0; i < numberOfPlayers; i++) {
-			players.add(new Player());
+			players.add(new Player("Player " + (i + 1)));
 		}
 		currentPlayer = players.get(0);
-	}
-	
-	public void setNames(String[] names) {
 	}
 	
 	public int getScoreForCurrentPlayer() {
@@ -43,11 +42,34 @@ public class PlayerController {
 		currentPlayer.incrementScore(increment);
 	}
 	
+	public String getNameOfCurrentPlayer() {
+		return currentPlayer.getName();
+	}
+	
 	public void nextPlayer() {
 		int index = players.indexOf(currentPlayer);
 		if (index >= players.size() - 1) index = 0;
 		else index++;
 		
 		currentPlayer = players.get(index);
+	}
+	
+	/**
+	 * Returns the single winner or, in the event of a tie, all of them
+	 * @return List of all the winning players
+	 */
+	public ArrayList<Player> getWinners() {
+		int bestScore = 0;
+		ArrayList<Player> winners = new ArrayList<Player>();
+		
+		for (Player player : players) {
+			if (player.getScore() >= bestScore) bestScore = player.getScore();
+		}
+		
+		for (Player player : players) {
+			if (player.getScore() == bestScore) winners.add(player);
+		}
+		return winners;
+		
 	}
 }

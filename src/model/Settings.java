@@ -1,20 +1,14 @@
 package model;
 
+
+
 public class Settings {
 	private int numberOfPlayers, numberOfTurns, turnTime;
 
-	private static Settings instance = null;
-	
-	private Settings() {
+	public Settings() {
 		
 	}
-	
-	//Settings
-	public static Settings instance() {
-		if (instance == null) instance = new Settings();
-		return instance;
-	}
-	
+		
 	public void setNumberOfPlayers(int numberOfPlayers) {
 		this.numberOfPlayers = numberOfPlayers;
 		System.out.println("Finished set number of players: " + this.numberOfPlayers);
@@ -25,9 +19,8 @@ public class Settings {
 		System.out.println("Finished set turntime: " + this.turnTime);
 		
 	}
-	public void setNumberOfTurns() {
-		// TODO Auto-generated method stub
-		
+	public void setNumberOfTurns(int numberOfTurns) {
+		this.numberOfTurns = numberOfTurns;
 	}
 
 	public int getNumberOfPlayers() {
@@ -39,8 +32,7 @@ public class Settings {
 	}
 
 	public int getNumberOfTurns() {
-		// TODO Auto-generated method stub
-		return 0;
+		return numberOfTurns;
 	}
 	
 	

@@ -65,15 +65,15 @@ public class LetterList {
 	}
 	
 
-	public static ArrayList<Letter> stringToList(String input) {
+	public ArrayList<Letter> stringToList(String input) {
 		ArrayList<Letter> out = new ArrayList<Letter>();
 		for (int i = 0; i < input.length(); i++) {
-			out.add(instance().get(Character.valueOf(input.charAt(i))));
+			out.add(get(Character.valueOf(input.charAt(i))));
 		}
 		return out;
 	}
 	
-	public static String listToString(ArrayList<Letter> input) {
+	public String listToString(ArrayList<Letter> input) {
 		String out = "";
 		for (int i = 0; i < input.size(); i++) {
 			out += input.get(i).getLetter();

@@ -14,7 +14,6 @@ public class MainController {
 	
 	public void onStartup(Context context) {
 		WordController.instance().buildDictionary(context);
-	    GameController.instance().setOngoingGame(false);
-
+		SettingsController.instance().createSettings(context);
 	}
 }

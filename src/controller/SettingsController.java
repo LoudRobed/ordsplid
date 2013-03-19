@@ -1,55 +1,80 @@
 package controller;
 
 import model.Settings;
-import tdt4240.ordsplid.R;
 import view.GameView;
-import view.MainActivity;
 import view.SettingsView;
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.app.DialogFragment;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Bundle;
-import android.preference.PreferenceManager;
+import android.content.SharedPreferences.Editor;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
 
 public class SettingsController {
-	private static Settings settings = Settings.instance();
+	private static Settings settings;
 	private static SettingsController instance = null;
 	
-	private SettingsController() {}
+	private SettingsController() {
+		settings = new Settings();
+	}
 	
 	static public SettingsController instance() {
 		if (instance == null) instance = new SettingsController();
 		return instance;
 	}
 	
+	public void createSettings(Context context) {
+		SharedPreferences preferences = context.getSharedPreferences("settings",0);
+		settings.setNumberOfPlayers(preferences.getInt("numberOfPlayers", 1));
+		settings.setNumberOfTurns(preferences.getInt("numberOfTurns", 3));
+		settings.setTurnTime(preferences.getInt("turnTime", 30));
+	}
+	
+	public void saveSettings(Context context) {
+		SharedPreferences preferences = context.getSharedPreferences("settings",0);
+		Editor edit = preferences.edit();
+		edit.putInt("numberOfPlayers", settings.getNumberOfPlayers());
+		edit.putInt("numberOfTurns", settings.getNumberOfTurns());
+		edit.putInt("turnTime", settings.getTurnTime());
+		edit.apply();
+	}
+	
 	static public class SettingsViewButtonListener implements OnClickListener {
 		public void onClick(View v) {
 			
 			try {
-				int numberOfPlayers = Integer.parseInt(SettingsView.getNumberOfPlayers());
-				int turnTime = Integer.parseInt(SettingsView.getTurnTime());
+				int numberOfPlayers = Integer.parseInt(SettingsView.instance().getNumberOfPlayers());
 				settings.setNumberOfPlayers(numberOfPlayers);
+
+				int turnTime = Integer.parseInt(SettingsView.instance().getTurnTime());
 				settings.setTurnTime(turnTime);
+				
+				int numberOfTurns = Integer.parseInt(SettingsView.instance().getNumberOfTurns());
+				settings.setNumberOfTurns(numberOfTurns);
 				
 				Intent myIntent = new Intent(SettingsView.instance(), GameView.class);
 				SettingsView.instance().startActivity(myIntent);
 			}
 			catch (NumberFormatException e) {
-				SettingsView.instance().displayToast("Please enter number");
-				e.printStackTrace();
+				
 			}
+			SettingsController.instance().saveSettings(SettingsView.instance());
+			
 						
 		}
+	}
+	
+	public int getNumberOfPlayers() {
+		return settings.getNumberOfPlayers();
+	}
+	
+	public int getTurnTime() {
+		return settings.getTurnTime();
+	}
+	
+	public int getNumberOfTurns() {
+		return settings.getNumberOfTurns();
 	}
 	
 }

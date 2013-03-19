@@ -25,12 +25,14 @@ public class GameController {
 	private GameController() {}
 	
 	public void setOngoingGame(boolean bool) {
-		if (bool && !ongoingGame) newGame();
-		else ongoingGame = bool;
+		if (bool && !ongoingGame) {
+			newGame();
+		}
+		ongoingGame = bool;
 	}
 	
 	public void newGame() {
-		playerController.setNumberOfPlayers(1);
+		playerController.setNumberOfPlayers(SettingsController.instance().getNumberOfPlayers());
 		wordController.resetScrabbleBag();
 	}
 
@@ -40,16 +42,18 @@ public class GameController {
 		playerController.updateScoreOfCurrentPlayer(wordScore);
 		
 		int playerScore = playerController.getScoreForCurrentPlayer();
-		
+		String name = PlayerController.instance().getNameOfCurrentPlayer();
 		word = wordController.retrieveNewLettersFromBag(word.size());
 		GameView.instance().switchLetters(word);
-		GameView.instance().displayToast("Wordscore: " + wordScore + "\nTotal score: " + playerScore);
+		GameView.instance().displayToast(name + "\nWordscore: " + wordScore + "\nTotal score: " + playerScore);
 	}
 	
 	/**
-	 * Called by scoreboard to continue with the next player
+	 * Starts a new round for the next player in line
 	 */
-	public void nextPlayer() {
+	public void nextRound() {
+		PlayerController.instance().nextPlayer();
+		WordController.instance().resetScrabbleBag();
 		Intent myIntent = new Intent(GameView.instance(), GameView.class);
 		GameView.instance().startActivity(myIntent);
 	}
@@ -58,12 +62,10 @@ public class GameController {
 	/**
 	 * Called when timeout occurs, and the players turn is over
 	 */
-	public void showIntermission() {
+	public void endRound() {
 		//TODO launch scoreboard
 		
-		
-		//Only temporary until scoreboard is completed.
-		nextPlayer();
+		nextRound();
 	}
 	
 	

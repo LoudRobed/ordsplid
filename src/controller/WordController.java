@@ -18,7 +18,7 @@ public class WordController {
 	private ScrabbleBag bag = new ScrabbleBag();
 	
 	public boolean checkWord(ArrayList<Letter> word) {
-		boolean inDictionary = dictionary.inDictionary(LetterList.listToString(word));
+		boolean inDictionary = dictionary.inDictionary(LetterList.instance().listToString(word));
 		return inDictionary;
 	}
 	

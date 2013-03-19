@@ -2,11 +2,15 @@ package model;
 
 public class Player implements IPlayer {
 	private int score = 0;
+	private String name;
+	
+	public Player(String name) {
+		this.name = name;
+	}
 	
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
-		return null;
+		return name;
 	}
 
 	@Override
