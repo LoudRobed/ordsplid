@@ -19,18 +19,14 @@ import android.content.res.AssetManager;
  *
  */
 public class Dictionary implements IDictionary {
-	
-	private static Dictionary instance = null;
-	private static boolean isCreated = false;
-	
-	
 	//HashSet for constant time when using contains().
 	HashSet<String> dictionary;
 	
-	private Dictionary() {}
+	public Dictionary(Context context) {
+		create(context);
+	}
 	
-	public void create(Context context) {
-		if (isCreated) return;
+	private void create(Context context) {
 		try {
 
 			AssetManager am = context.getAssets();
@@ -44,24 +40,11 @@ public class Dictionary implements IDictionary {
 			while ((word = reader.readLine()) != null) {
 				dictionary.add(word.toLowerCase(Locale.US));
 			}
-			reader.close();
-
-			isCreated = true;
-
-			
+			reader.close();			
 		} catch (IOException e) {
 			System.out.println("FAILFAILFAIL");
 		}
 		
-	}
-	
-	/**
-	 * Will return the singleton object, if no such object exists, one will be created.
-	 * @return
-	 */
-	static public Dictionary instance() {
-		if (instance == null) instance = new Dictionary();
-		return instance;
 	}
 	
 	@Override

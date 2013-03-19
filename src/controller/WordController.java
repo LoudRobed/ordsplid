@@ -3,6 +3,8 @@ package controller;
 
 import java.util.ArrayList;
 
+import android.content.Context;
+
 import model.Dictionary;
 import model.Letter;
 import model.LetterList;
@@ -12,7 +14,7 @@ import model.ScrabbleBag;
 public class WordController {
 
 	private static WordController instance = null;
-	private Dictionary dictionary = Dictionary.instance();
+	private Dictionary dictionary;
 	private ScrabbleBag bag = new ScrabbleBag();
 	
 	public boolean checkWord(ArrayList<Letter> word) {
@@ -20,8 +22,7 @@ public class WordController {
 		return inDictionary;
 	}
 	
-	private WordController() {
-	}
+	private WordController() {}
 	
 	static public WordController instance() {
 		if (instance == null) instance = new WordController();
@@ -60,6 +61,10 @@ public class WordController {
 	
 	public void resetScrabbleBag() {
 		bag = new ScrabbleBag();
+	}
+	
+	public void buildDictionary(Context context) {
+		dictionary = new Dictionary(context);
 	}
 	
 }
