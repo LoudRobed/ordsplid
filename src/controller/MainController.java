@@ -14,6 +14,6 @@ public class MainController {
 	
 	public void onStartup(Context context) {
 		WordController.instance().buildDictionary(context);
-		SettingsController.instance().createSettings(context);
+		SettingsController.instance().readSettingsFromStorage(context);
 	}
 }

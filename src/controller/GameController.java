@@ -17,19 +17,34 @@ public class GameController {
 	private WordController wordController = WordController.instance();
 	private PlayerController playerController = PlayerController.instance();
 	private boolean ongoingGame = false;
-	private int turn = 1;
+	private int currentTurn;
+	
+	private GameController() {}
+	
+	public static GameController instance() {
+		if (instance == null) instance = new GameController();
+		return instance;
+	} 
+	
+	
 	
 	/**
 	 * Starts a new turn for the next player in line
 	 */
 	public void nextTurn() {
 		if (PlayerController.instance().nextPlayer()) {
-			if (++turn > SettingsController.instance().getNumberOfTurns()) endGame();
+			if (++currentTurn > SettingsController.instance().getNumberOfTurns()){
+				endGame();
+				return;
+			}
 			
 		}
 		WordController.instance().resetScrabbleBag();
 		Intent myIntent = new Intent(GameView.instance(), GameView.class);
-		GameView.instance().startActivity(myIntent);
+		
+		GameView temp = GameView.instance();
+		temp.startActivity(myIntent);
+		temp.finish();
 		updateInfoBar();
 	}
 	
@@ -39,13 +54,20 @@ public class GameController {
 	public void endTurn() {
 		//TODO launch scoreboard
 		
+		nextTurn();
+	}
+
+
+	public void newGame() {
+		playerController.setNumberOfPlayers(SettingsController.instance().getNumberOfPlayers());
+		wordController.resetScrabbleBag();
+		currentTurn = 1;
+		
 	}
 	
-	/**
-	 * Called when every round is finished
-	 */
 	public void endGame() {
 		setOngoingGame(false);
+		
 		Intent myIntent = new Intent(GameView.instance(), GameOverView.class);
 		GameView.instance().startActivity(myIntent);
 		GameView.instance().finish();
@@ -53,6 +75,7 @@ public class GameController {
 	
 	public void submitWord(ArrayList<Letter> word) {
 		int wordScore = wordController.calculateWordScore(word);
+		
 		wordController.returnWordToBag(word);
 		playerController.updateScoreOfCurrentPlayer(wordScore);
 		
@@ -61,19 +84,28 @@ public class GameController {
 		GameView.instance().displayToast("Wordscore: " + wordScore);
 		updateScoreInGameView();
 	}
-	public void newGame() {
-		playerController.setNumberOfPlayers(SettingsController.instance().getNumberOfPlayers());
-		wordController.resetScrabbleBag();
-		
+	
+	
+	
+	
+	
+	public void updateInfoBar() {
+		updateScoreInGameView();
+		updatePlayerNameInGameView();
 	}
 	
-	public static GameController instance() {
-		if (instance == null) instance = new GameController();
-		return instance;
-	} 
+	private void updateScoreInGameView() {
+		int playerScore = playerController.getScoreForCurrentPlayer();
 	
-	private GameController() {}
+		GameView.instance().setScore("" + playerScore);
+	}
 	
+	private void updatePlayerNameInGameView() {
+		String name = PlayerController.instance().getNameOfCurrentPlayer();
+		
+		GameView.instance().setPlayerName(name);
+	}
+
 	public void setOngoingGame(boolean bool) {
 		if (bool && !ongoingGame) {
 			newGame();
@@ -85,24 +117,7 @@ public class GameController {
 		return ongoingGame;
 	}
 	
-	
-	
-	public void updateInfoBar() {
-		updateScoreInGameView();
-		updatePlayerNameInGameView();
+	public int getCurrentTurn() {
+		return currentTurn;
 	}
-	
-	private void updateScoreInGameView() {
-		int playerScore = playerController.getScoreForCurrentPlayer();
-		GameView.instance().setScore("" + playerScore);
-	}
-	
-	private void updatePlayerNameInGameView() {
-		String name = PlayerController.instance().getNameOfCurrentPlayer();
-		
-		GameView.instance().setPlayerName(name);
-	}
-
-	
-	
 }

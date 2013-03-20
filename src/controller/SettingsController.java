@@ -17,6 +17,9 @@ public class SettingsController {
 	
 	private SettingsController() {
 		settings = new Settings();
+		settings.setNumberOfPlayers(1);
+		settings.setNumberOfTurns(3);
+		settings.setTurnTime(30);
 	}
 	
 	static public SettingsController instance() {
@@ -24,14 +27,16 @@ public class SettingsController {
 		return instance;
 	}
 	
-	public void createSettings(Context context) {
+	public void readSettingsFromStorage(Context context) {
 		SharedPreferences preferences = context.getSharedPreferences("settings",0);
 		settings.setNumberOfPlayers(preferences.getInt("numberOfPlayers", 1));
 		settings.setNumberOfTurns(preferences.getInt("numberOfTurns", 3));
 		settings.setTurnTime(preferences.getInt("turnTime", 30));
 	}
 	
-	public void saveSettings(Context context) {
+	
+	
+	public void writeSettingsToStorage(Context context) {
 		SharedPreferences preferences = context.getSharedPreferences("settings",0);
 		Editor edit = preferences.edit();
 		edit.putInt("numberOfPlayers", settings.getNumberOfPlayers());
@@ -58,7 +63,10 @@ public class SettingsController {
 				settings.setNumberOfTurns(numberOfTurns);
 			} catch(NumberFormatException e) {}
 			
-			SettingsController.instance().saveSettings(SettingsView.instance());
+			
+			
+			SettingsController.instance().writeSettingsToStorage(SettingsView.instance());
+			SettingsView.instance().finish();
 						
 		}
 	}

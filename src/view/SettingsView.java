@@ -30,12 +30,19 @@ public class SettingsView extends Activity  {
 	    instance = this;
 	    setContentView(R.layout.activity_settings);
 	    
-	    numberOfPlayersField = (EditText) findViewById(R.id.number_of_players);
-	    turnTimeField = (EditText) findViewById(R.id.turn_time);
-	    numberOfTurnsField = (EditText) findViewById(R.id.number_of_turns);
+	    numberOfPlayersField = (EditText) findViewById(R.id.number_of_players_field);
+	    turnTimeField = (EditText) findViewById(R.id.turn_time_field);
+	    numberOfTurnsField = (EditText) findViewById(R.id.number_of_turns_field);
 		startGameButton = (Button) findViewById(R.id.start_game_button);
 		startGameButton.setOnClickListener(new SettingsController.SettingsViewButtonListener());
-
+		
+		fillFields();
+	}
+	
+	public void fillFields() {
+		numberOfPlayersField.setText(Integer.toString(SettingsController.instance().getNumberOfPlayers()));
+		numberOfTurnsField.setText(Integer.toString(SettingsController.instance().getNumberOfTurns()));
+		turnTimeField.setText(Integer.toString(SettingsController.instance().getTurnTime()));
 	}
 	
 	public String getNumberOfPlayers() {
