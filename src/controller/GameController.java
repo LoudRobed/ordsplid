@@ -19,6 +19,54 @@ public class GameController {
 	private boolean ongoingGame = false;
 	private int turn = 1;
 	
+	/**
+	 * Starts a new turn for the next player in line
+	 */
+	public void nextTurn() {
+		if (PlayerController.instance().nextPlayer()) {
+			if (++turn > SettingsController.instance().getNumberOfTurns()) endGame();
+			
+		}
+		WordController.instance().resetScrabbleBag();
+		Intent myIntent = new Intent(GameView.instance(), GameView.class);
+		GameView.instance().startActivity(myIntent);
+		updateInfoBar();
+	}
+	
+	/**
+	 * Called when timeout occurs, and the players turn is over
+	 */
+	public void endTurn() {
+		//TODO launch scoreboard
+		
+	}
+	
+	/**
+	 * Called when every round is finished
+	 */
+	public void endGame() {
+		setOngoingGame(false);
+		Intent myIntent = new Intent(GameView.instance(), GameOverView.class);
+		GameView.instance().startActivity(myIntent);
+		GameView.instance().finish();
+	}
+	
+	public void submitWord(ArrayList<Letter> word) {
+		int wordScore = wordController.calculateWordScore(word);
+		wordController.returnWordToBag(word);
+		playerController.updateScoreOfCurrentPlayer(wordScore);
+		
+		word = wordController.retrieveNewLettersFromBag(word.size());
+		GameView.instance().switchLetters(word);
+		GameView.instance().displayToast("Wordscore: " + wordScore);
+		updateScoreInGameView();
+	}
+	public void newGame() {
+		playerController.setNumberOfPlayers(SettingsController.instance().getNumberOfPlayers());
+		wordController.resetScrabbleBag();
+		
+	}
+	
 	public static GameController instance() {
 		if (instance == null) instance = new GameController();
 		return instance;
@@ -37,11 +85,7 @@ public class GameController {
 		return ongoingGame;
 	}
 	
-	public void newGame() {
-		playerController.setNumberOfPlayers(SettingsController.instance().getNumberOfPlayers());
-		wordController.resetScrabbleBag();
-		
-	}
+	
 	
 	public void updateInfoBar() {
 		updateScoreInGameView();
@@ -59,48 +103,6 @@ public class GameController {
 		GameView.instance().setPlayerName(name);
 	}
 
-	public void submitWord(ArrayList<Letter> word) {
-		int wordScore = wordController.calculateWordScore(word);
-		wordController.returnWordToBag(word);
-		playerController.updateScoreOfCurrentPlayer(wordScore);
-		
-		word = wordController.retrieveNewLettersFromBag(word.size());
-		GameView.instance().switchLetters(word);
-		GameView.instance().displayToast("Wordscore: " + wordScore);
-		updateScoreInGameView();
-	}
-	
-	/**
-	 * Starts a new turn for the next player in line
-	 */
-	public void nextTurn() {
-		if (PlayerController.instance().nextPlayer()) {
-			if (++turn > SettingsController.instance().getNumberOfTurns()) endGame();
-			
-		}
-		WordController.instance().resetScrabbleBag();
-		Intent myIntent = new Intent(GameView.instance(), GameView.class);
-		GameView.instance().startActivity(myIntent);
-		updateInfoBar();
-	}
 	
 	
-	/**
-	 * Called when timeout occurs, and the players turn is over
-	 */
-	public void endTurn() {
-		//TODO launch scoreboard
-		
-	}
-	
-	
-	/**
-	 * Called when every round is finished
-	 */
-	public void endGame() {
-		setOngoingGame(false);
-		Intent myIntent = new Intent(GameView.instance(), GameOverView.class);
-		GameView.instance().startActivity(myIntent);
-		GameView.instance().finish();
-	}
 }
