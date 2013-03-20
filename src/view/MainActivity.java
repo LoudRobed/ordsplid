@@ -29,6 +29,8 @@ public class MainActivity extends Activity  {
 		Button newGameButton = (Button) findViewById(R.id.new_game_button);
 		Button settingsButton = (Button) findViewById(R.id.settings_button);
 		
+		
+		
 		newGameButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {

@@ -6,12 +6,6 @@ import view.GameView;
 
 import model.Player;
 
-
-/**
- * Only test
- * @author Simen
- *
- */
 public class PlayerController {
 	private ArrayList<Player> players = null;
 	private Player currentPlayer = null;
@@ -46,12 +40,22 @@ public class PlayerController {
 		return currentPlayer.getName();
 	}
 	
-	public void nextPlayer() {
+	/**
+	 * Changes the current player to the next one in line
+	 * @return true if round has ended
+	 */
+	public boolean nextPlayer() {
+		boolean newRound = false;
 		int index = players.indexOf(currentPlayer);
-		if (index >= players.size() - 1) index = 0;
+		if (index >= players.size() - 1) {
+			index = 0;
+			newRound = true;
+		}
 		else index++;
 		
 		currentPlayer = players.get(index);
+		
+		return newRound;
 	}
 	
 	/**
