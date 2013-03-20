@@ -23,11 +23,12 @@
             </intent-filter>
         </activity>
         <activity android:name="view.SettingsView"
-            android:screenOrientation="portrait"></activity>
-        <activity android:name="view.GameView"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"/>
             
-        </activity>
+        <activity android:name="view.GameView"
+            android:screenOrientation="portrait"/>
+        
+        <activity android:name="view.GameOverView"/>
     </application>
 
 </manifest>
