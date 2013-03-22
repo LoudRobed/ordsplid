@@ -1,10 +1,12 @@
 package controller;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import view.GameView;
 
 import model.Player;
+import model.Word;
 
 public class PlayerController {
 	private ArrayList<Player> players = null;
@@ -32,9 +34,6 @@ public class PlayerController {
 		return currentPlayer.getScore();
 	}
 	
-	public void updateScoreOfCurrentPlayer(int increment) {
-		currentPlayer.incrementScore(increment);
-	}
 	
 	public String getNameOfCurrentPlayer() {
 		return currentPlayer.getName();
@@ -58,22 +57,18 @@ public class PlayerController {
 		return newRound;
 	}
 	
-	/**
-	 * Returns the single winner or, in the event of a tie, all of them
-	 * @return List of all the winning players
-	 */
-	public ArrayList<Player> getWinners() {
-		int bestScore = 0;
-		ArrayList<Player> winners = new ArrayList<Player>();
-		
-		for (Player player : players) {
-			if (player.getScore() >= bestScore) bestScore = player.getScore();
-		}
-		
-		for (Player player : players) {
-			if (player.getScore() == bestScore) winners.add(player);
-		}
-		return winners;
-		
+	public ArrayList<Player> getPlayersSortedByScore() {
+		ArrayList<Player> out = new ArrayList<Player>();
+		Collections.sort(out);
+		return out;
+	}
+	
+	public ArrayList<Player> getPlayers() {
+		return players;
+	}
+
+	public void addWordToCurrentPlayer(Word word) {
+		currentPlayer.incrementScore(word.getWordScore());
+		currentPlayer.addWord(word);
 	}
 }

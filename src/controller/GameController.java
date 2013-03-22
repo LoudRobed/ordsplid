@@ -6,6 +6,7 @@ import android.content.Intent;
 
 import model.Letter;
 import model.LetterList;
+import model.Word;
 
 import view.GameOverView;
 import view.GameView;
@@ -26,8 +27,6 @@ public class GameController {
 		return instance;
 	} 
 	
-	
-	
 	/**
 	 * Starts a new turn for the next player in line
 	 */
@@ -45,7 +44,7 @@ public class GameController {
 		GameView temp = GameView.instance();
 		temp.startActivity(myIntent);
 		temp.finish();
-		updateInfoBar();
+		updateInfoBarInGameView();
 	}
 	
 	/**
@@ -73,11 +72,11 @@ public class GameController {
 		GameView.instance().finish();
 	}
 	
-	public void submitWord(ArrayList<Letter> word) {
-		int wordScore = wordController.calculateWordScore(word);
+	public void submitWord(Word word) {
+		int wordScore = word.getWordScore();
 		
 		wordController.returnWordToBag(word);
-		playerController.updateScoreOfCurrentPlayer(wordScore);
+		playerController.addWordToCurrentPlayer(word);
 		
 		word = wordController.retrieveNewLettersFromBag(word.size());
 		GameView.instance().switchLetters(word);
@@ -85,11 +84,7 @@ public class GameController {
 		updateScoreInGameView();
 	}
 	
-	
-	
-	
-	
-	public void updateInfoBar() {
+	public void updateInfoBarInGameView() {
 		updateScoreInGameView();
 		updatePlayerNameInGameView();
 	}

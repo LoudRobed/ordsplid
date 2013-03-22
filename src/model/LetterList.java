@@ -64,22 +64,6 @@ public class LetterList {
 		return list.get(i);
 	}
 	
-
-	public ArrayList<Letter> stringToList(String input) {
-		ArrayList<Letter> out = new ArrayList<Letter>();
-		for (int i = 0; i < input.length(); i++) {
-			out.add(get(Character.valueOf(input.charAt(i))));
-		}
-		return out;
-	}
-	
-	public String listToString(ArrayList<Letter> input) {
-		String out = "";
-		for (int i = 0; i < input.size(); i++) {
-			out += input.get(i).getLetter();
-		}
-		return out;
-	}
 	
 	private void fillList() {
 		//1 point

@@ -15,7 +15,7 @@ import controller.WordController;
 public class ButtonAdapter extends BaseAdapter{
 	private Context mContext;
 	private WordController wController = WordController.instance();
-	ArrayList<Letter> s = wController.retrieveNewLettersFromBag(16);
+	private ArrayList<Letter> s = wController.retrieveNewLettersFromBag(16);
 	private ArrayList<Button> buttonList = new ArrayList<Button>();
 	
 	

@@ -2,7 +2,7 @@ package view;
 
 import java.util.ArrayList;
 
-import model.Letter;
+import model.Word;
 import tdt4240.ordsplid.R;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -10,16 +10,12 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.Point;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.view.Display;
 import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,7 +33,7 @@ public class GameView extends Activity{
 	private ButtonAdapter btnAdapter;
 	private String s = "";
 	private WordController wController = WordController.instance();
-	private ArrayList<Letter> currentWord = new ArrayList<Letter>();
+	private Word currentWord = new Word();
 	private MatrixButton prevClickedBtn;
 	private ArrayList<MatrixButton> activeButtons;
 	
@@ -52,7 +48,7 @@ public class GameView extends Activity{
 
 	    GameController.instance().setOngoingGame(true);
 
-	    //Remove notification and title bar
+	    //Remove title bar
     	this.requestWindowFeature(Window.FEATURE_NO_TITLE);
     	//this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
@@ -129,7 +125,7 @@ public class GameView extends Activity{
 				clearScreen();
 			}
 		});
-	    GameController.instance().updateInfoBar();
+	    GameController.instance().updateInfoBarInGameView();
 	}
 	
 	private void updateOKButton() {
@@ -155,7 +151,7 @@ public class GameView extends Activity{
 		toast.show();
 	}
 	
-	public void switchLetters(ArrayList<Letter> newLetters) {
+	public void switchLetters(Word newLetters) {
 		if (activeButtons.size() != newLetters.size()){
 			displayToast("ERROR! Sizes does not match\n" + activeButtons.size() + " - " + newLetters.size());
 			return;
@@ -171,8 +167,7 @@ public class GameView extends Activity{
 			
 		}
 		activeButtons = new ArrayList<MatrixButton>();
-		currentWord = new ArrayList<Letter>();
-		
+		currentWord = new Word();
 		s = "";
 		text.setText(s);
 		updateOKButton();

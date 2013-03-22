@@ -4,7 +4,11 @@
     android:layout_height="match_parent"
     android:background="@drawable/background">
     
-
+	<ProgressBar android:id="@+android:id/progress_large"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" />
     <Button
         android:id="@+id/new_game_button"
         android:layout_width="@dimen/ordsplid_button_width"

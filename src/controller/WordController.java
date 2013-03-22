@@ -1,14 +1,11 @@
 package controller;
 
 
-import java.util.ArrayList;
-
-import android.content.Context;
-
 import model.Dictionary;
 import model.Letter;
-import model.LetterList;
 import model.ScrabbleBag;
+import model.Word;
+import android.content.Context;
 
 
 public class WordController {
@@ -17,8 +14,8 @@ public class WordController {
 	private Dictionary dictionary;
 	private ScrabbleBag bag = new ScrabbleBag();
 	
-	public boolean checkWord(ArrayList<Letter> word) {
-		boolean inDictionary = dictionary.inDictionary(LetterList.instance().listToString(word));
+	public boolean checkWord(Word word) {
+		boolean inDictionary = dictionary.inDictionary(word.toString());
 		return inDictionary;
 	}
 	
@@ -29,19 +26,12 @@ public class WordController {
 		return instance;
 	}
 	
-	public int calculateWordScore(ArrayList<Letter> word) {
-		int score = 0;
-		for (int i = 0; i < word.size(); i++) {
-			score += word.get(i).getPoints();
-		}
-		return score;
-	}
 	
 	/**
 	 * Returns the letters used in the word to the ScrabbleBag.
 	 * @param word
 	 */
-	public void returnWordToBag(ArrayList<Letter> word) {
+	public void returnWordToBag(Word word) {
 		for (Letter l: word) bag.returnLetter(l);
 	}
 	
@@ -51,8 +41,8 @@ public class WordController {
 	 * @param amount
 	 * @return
 	 */
-	public ArrayList<Letter> retrieveNewLettersFromBag(int amount) {
-		ArrayList<Letter> out = new ArrayList<Letter>();
+	public Word retrieveNewLettersFromBag(int amount) {
+		Word out = new Word();
 		for (int i = 0; i < amount; i++) {
 			out.add(bag.getRandomLetter());
 		}
