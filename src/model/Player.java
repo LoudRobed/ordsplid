@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Player implements IPlayer, Comparable<Player> {
 	private int score = 0;
 	private String name;
-	private ArrayList<Word> submittedWords = new ArrayList<Word>();
+	private WordList submittedWords = new WordList();
 	
 	public Player(String name) {
 		this.name = name;
@@ -30,14 +30,27 @@ public class Player implements IPlayer, Comparable<Player> {
 		submittedWords.add(word);
 	}
 	
-	public ArrayList<Word> getWords() {
+	public WordList getWords() {
 		return submittedWords;
 	}
 
-	@Override
-	public int compareTo(Player another) {
-		return Integer.valueOf(getScore()).compareTo(Integer.valueOf(another.getScore()));
+	
+	public String getPlayerInfo() {
+		String out = "";
+		out += toString() + "\t - \t" + getScore() + " points";
+		
+		return out;
 	}
 	
+
+	@Override
+	public int compareTo(Player another) {
+		return Integer.valueOf(another.getScore()).compareTo(Integer.valueOf(getScore()));
+	}
+	
+	@Override
+	public String toString() {
+		return name;
+	}
 	
 }

@@ -9,6 +9,7 @@ import model.LetterList;
 import model.Word;
 
 import view.GameOverView;
+import view.GameOverView;
 import view.GameView;
 import view.SettingsView;
 
@@ -80,7 +81,7 @@ public class GameController {
 		
 		word = wordController.retrieveNewLettersFromBag(word.size());
 		GameView.instance().switchLetters(word);
-		GameView.instance().displayToast("Wordscore: " + wordScore);
+		GameView.instance().displayToast("Word score: " + wordScore);
 		updateScoreInGameView();
 	}
 	
@@ -91,7 +92,6 @@ public class GameController {
 	
 	private void updateScoreInGameView() {
 		int playerScore = playerController.getScoreForCurrentPlayer();
-	
 		GameView.instance().setScore("" + playerScore);
 	}
 	

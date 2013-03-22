@@ -44,4 +44,13 @@ public class Word extends ArrayList<Letter> {
 		}
 		return out;
 	}
+
+	public String getInfo() {
+		String out = "";
+		out += toString() + " - ";
+		out += getWordScore() + " points - ";
+		out += size() + " letters ";
+		
+		return out;
+	}
 }

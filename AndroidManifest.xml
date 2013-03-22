@@ -27,8 +27,7 @@
             
         <activity android:name="view.GameView"
             android:screenOrientation="portrait"/>
-        
-        <activity android:name="view.GameOverView"/>
+        <activity android:name="view.GameOverView"></activity>
     </application>
 
 </manifest>

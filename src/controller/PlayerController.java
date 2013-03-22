@@ -58,7 +58,7 @@ public class PlayerController {
 	}
 	
 	public ArrayList<Player> getPlayersSortedByScore() {
-		ArrayList<Player> out = new ArrayList<Player>();
+		ArrayList<Player> out = players;
 		Collections.sort(out);
 		return out;
 	}
