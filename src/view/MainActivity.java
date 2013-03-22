@@ -1,35 +1,44 @@
 package view;
 
-import controller.GameController;
-import controller.MainController;
-import controller.PlayerController;
-import controller.SettingsController;
-import controller.WordController;
-import model.Dictionary;
 import tdt4240.ordsplid.R;
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ProgressBar;
+import controller.MainController;
 
 public class MainActivity extends Activity  {
-
+	private ProgressBar bar;
+	boolean finishedLoading = false;
+	private Handler handler = new Handler();
+	private Button newGameButton;
+	private Button settingsButton;
+	
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 	    
 	    setContentView(R.layout.activity_ordsplid);
 	    
+	    bar = (ProgressBar) findViewById(R.id.progress_large);;
+	      
+		new Thread(new Runnable() {
+	        public void run() {     	
+	        	MainController.instance().onStartup(getApplicationContext());
+	        	handler.post(new Runnable() {
+					@Override
+					public void run() {
+						finishedLoading();
+					}
+	        	});
+	        }
+	    }).start();
 	    
-		MainController.instance().onStartup(getApplicationContext());
-	    
-	    
-		Button newGameButton = (Button) findViewById(R.id.new_game_button);
-		Button settingsButton = (Button) findViewById(R.id.settings_button);
-		
-		
+		newGameButton = (Button) findViewById(R.id.new_game_button);
+		settingsButton = (Button) findViewById(R.id.settings_button);
 		
 		newGameButton.setOnClickListener(new OnClickListener() {
 			@Override
@@ -38,6 +47,7 @@ public class MainActivity extends Activity  {
 				MainActivity.this.startActivity(myIntent);
 			}
 		});
+		newGameButton.setVisibility(View.INVISIBLE);
 		
 		settingsButton.setOnClickListener(new OnClickListener() {
 			@Override
@@ -46,7 +56,12 @@ public class MainActivity extends Activity  {
 				MainActivity.this.startActivity(myIntent);
 			}
 		});
-
-
+		settingsButton.setVisibility(View.INVISIBLE);
+	}
+	
+	private void finishedLoading() {
+		bar.setVisibility(View.INVISIBLE);
+		newGameButton.setVisibility(View.VISIBLE);
+		settingsButton.setVisibility(View.VISIBLE);
 	}
 }
