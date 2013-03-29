@@ -1,0 +1,33 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+	<TextView
+	    android:id="@+id/dialog_score_view"
+	    android:layout_width="fill_parent"
+	    android:layout_height="0dp"
+	    android:layout_weight="0.2"
+	    android:gravity="center"
+	    android:text="Current Score"
+	    android:textSize="30sp" />
+
+	<ListView
+	    android:id="@+id/dialog_score_list"
+        android:layout_width="fill_parent" 
+	    android:layout_height="0dp"
+	    android:layout_weight="1"
+        android:drawSelectorOnTop="false" >
+	</ListView>
+	
+	<Button
+	    android:id="@+id/continue_button"
+	    android:layout_width="fill_parent"
+	    android:layout_height="0dp"
+	    android:layout_weight="0.2"
+	    android:background="@color/white"
+	    android:text="Continue" />
+
+</LinearLayout>
