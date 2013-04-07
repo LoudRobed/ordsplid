@@ -31,7 +31,7 @@
 			android:id="@+id/timerView"
 			
 			android:gravity="center_vertical|right"
-			android:text="Timer"
+			android:text=""
 			android:paddingRight="10dp"
 			style="@style/topBarView"
 			/>
