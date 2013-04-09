@@ -62,6 +62,7 @@ public class GameOverView extends ExpandableListActivity {
 
         String title = ((TextView) info.targetView).getText().toString();
         
+        /* 
         int type = ExpandableListView.getPackedPositionType(info.packedPosition);
         if (type == ExpandableListView.PACKED_POSITION_TYPE_CHILD) {
             int groupPos = ExpandableListView.getPackedPositionGroup(info.packedPosition); 
@@ -74,11 +75,12 @@ public class GameOverView extends ExpandableListActivity {
             Toast.makeText(this, title + ": Group " + groupPos + " clicked", Toast.LENGTH_SHORT).show();
             return true;
         }
+        */
         
         return false;
     }
 
-    public class MyExpandableListAdapter extends BaseExpandableListAdapter {
+    private class MyExpandableListAdapter extends BaseExpandableListAdapter {
         private ArrayList<Player> players = PlayerController.instance().getPlayersSortedByScore();
         
         public Object getChild(int groupPosition, int childPosition) {
@@ -90,7 +92,7 @@ public class GameOverView extends ExpandableListActivity {
         }
 
         public int getChildrenCount(int groupPosition) {
-            return players.get(groupPosition).getWords().getStatistics().size();
+        	return players.get(groupPosition).getWords().getStatistics().size();
         }
 
         public TextView getGenericView() {

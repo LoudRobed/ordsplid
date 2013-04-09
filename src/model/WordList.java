@@ -7,7 +7,7 @@ public class WordList extends ArrayList<Word> {
 	
 	public ArrayList<String> getStatistics() {
 		ArrayList<String> out = new ArrayList<String>();
-		if (size() < 0) return out;
+		if (size() <= 0) return out;
 		calculateStats();
 		
 		DecimalFormat df = new DecimalFormat("#.##");
