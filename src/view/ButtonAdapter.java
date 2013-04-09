@@ -7,12 +7,14 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.RectF;
 import android.graphics.Typeface;
+import android.os.Handler;
 import android.text.Html;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import controller.MainController;
 import controller.WordController;
 
 public class ButtonAdapter extends BaseAdapter  {
@@ -81,7 +83,7 @@ public class ButtonAdapter extends BaseAdapter  {
 //Added new class to store letter-object in buttons
 class MatrixButton extends Button {
 	private Letter letter;
-	public int rotation = 0;
+	private int rotation = 0;
 		
 	public MatrixButton(Context context) {
 		super(context);
@@ -142,6 +144,31 @@ class MatrixButton extends Button {
 	public void setNewestSelected() {
 		setBackgroundColor(Color.YELLOW);
 		setShadowLayer(1, 1, 1, 1);
+	}
+	
+	public void animateLetterSwitch(final Letter letter) {
+		// Animate
+		animate().rotationX((rotation += 360));
+		animate().setDuration(300);
+		animate().setStartDelay(100);
+		// Set Letter
+					
+		//Used to time the letter change with rotation
+		final Handler handler = new Handler();
+		new Thread(new Runnable() {
+	        public void run() {
+	        	try {
+					Thread.sleep(300);
+				} catch (InterruptedException e) {}
+	        	handler.post(new Runnable() {
+					@Override
+					public void run() {
+						setLetter(letter);
+					}
+	        	});
+	        }
+	    }).start();
+		
 	}
 	
 	

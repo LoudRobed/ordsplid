@@ -8,6 +8,7 @@ import controller.PlayerController;
 import tdt4240.ordsplid.R;
 import android.app.Dialog;
 import android.content.Context;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -38,13 +39,32 @@ public class ScoreDialog extends Dialog{
 		//Removed flag in gamecontroller, and used this instead.
 		setCanceledOnTouchOutside(false);
 		
-		Button continueButton = (Button)findViewById(R.id.continue_button);
-		continueButton.setOnClickListener(new View.OnClickListener() {		
-			
-			public void onClick(View arg0) {
-				gController.nextTurn();
-				ScoreDialog.this.dismiss();
-			}
-		});
+		final Button continueButton = (Button)findViewById(R.id.continue_button);
+		
+		
+		/*
+		 * This is used to make the continue button unclickable for a certain time period,
+		 * Useful so one does not accidentally click continue when the dialog pops up
+		 * 
+		 */
+		final Handler handler = new Handler();
+		new Thread(new Runnable() {
+	        public void run() {
+	        	try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {}
+	        	handler.post(new Runnable() {
+					@Override
+					public void run() {
+						continueButton.setOnClickListener(new View.OnClickListener() {
+							public void onClick(View arg0) {
+								ScoreDialog.this.dismiss();
+								gController.nextTurn();
+							}
+						});
+					}
+	        	});
+	        }
+	    }).start();
 	}
 }

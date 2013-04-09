@@ -51,6 +51,7 @@ public class GameView extends Activity{
 		}
 		
 		public void onFinish() {
+			GameView.instance().setTimer("0");
 			GameController.instance().endTurn();
 		}
 	};
@@ -172,13 +173,7 @@ public class GameView extends Activity{
 			return;
 		}
 		for (int i = 0; i < activeButtons.size(); i++) {
-			// Animate
-			activeButtons.get(i).rotation += 360;
-			activeButtons.get(i).animate().rotationX(activeButtons.get(i).rotation);
-			activeButtons.get(i).animate().setDuration(500);
-			activeButtons.get(i).animate().setStartDelay(100);
-			// Set Letter
-			activeButtons.get(i).setLetter(newLetters.get(i));
+			activeButtons.get(i).animateLetterSwitch(newLetters.get(i));
 		}
 	}
 	

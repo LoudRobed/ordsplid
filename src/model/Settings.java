@@ -11,12 +11,10 @@ public class Settings {
 		
 	public void setNumberOfPlayers(int numberOfPlayers) {
 		this.numberOfPlayers = numberOfPlayers;
-		System.out.println("Finished set number of players: " + this.numberOfPlayers);
 	}
 
 	public void setTurnTime(int turnTime) {
 		this.turnTime = turnTime;
-		System.out.println("Finished set turntime: " + this.turnTime);
 		
 	}
 	public void setNumberOfTurns(int numberOfTurns) {
