@@ -159,6 +159,11 @@ public class GameView extends Activity{
 			return;
 		}
 		for (int i = 0; i < activeButtons.size(); i++) {
+			// Animate
+			activeButtons.get(i).animate().rotationX(360);
+			activeButtons.get(i).animate().setDuration(1000);
+			activeButtons.get(i).animate().setStartDelay(100);
+			// Set Letter
 			activeButtons.get(i).setLetter(newLetters.get(i));
 		}
 	}
