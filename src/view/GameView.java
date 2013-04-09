@@ -41,6 +41,7 @@ public class GameView extends Activity{
     private TextView text;
     private TextView scoreView;
     private TextView playerNameView;
+    private TextView timerView;
     
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
@@ -58,6 +59,7 @@ public class GameView extends Activity{
 	    btnAdapter = new ButtonAdapter(this);
 	    text = (TextView) findViewById(R.id.wordView);
 	    scoreView = (TextView) findViewById(R.id.scoreView);
+	    timerView = (TextView) findViewById(R.id.timerView);
 	    playerNameView = (TextView) findViewById(R.id.playerNameView);
 	    
 	    //Setting up the OK button
@@ -183,6 +185,7 @@ public class GameView extends Activity{
 	           public void onClick(DialogInterface dialog, int id) {
 	        	   //GameController.instance().nextPlayer();
 	        	   GameController.instance().setOngoingGame(false);
+	        	   GameController.instance().cancelGame();
 	        	   GameView.super.onBackPressed();
 	           }
 	       });
@@ -198,6 +201,10 @@ public class GameView extends Activity{
 	
 	public void setScore(String score) {
 		scoreView.setText(score);
+	}
+	
+	public void setTimer(String time) {
+		timerView.setText(time);
 	}
 	
 	public void setPlayerName(String playerName) {

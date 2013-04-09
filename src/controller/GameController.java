@@ -3,6 +3,7 @@ package controller;
 import java.util.ArrayList;
 
 import android.content.Intent;
+import android.os.CountDownTimer;
 
 import model.Letter;
 import model.LetterList;
@@ -20,6 +21,15 @@ public class GameController {
 	private PlayerController playerController = PlayerController.instance();
 	private boolean ongoingGame = false;
 	private int currentTurn;
+	private CountDownTimer timer =  new CountDownTimer(SettingsController.instance().getTurnTime() * 1000, 1000) {
+		public void onTick(long millisUntilFinished) {
+			GameView.instance().setTimer("" + millisUntilFinished / 1000);
+		}
+		
+		public void onFinish() {
+			GameController.instance().endTurn();
+		}
+	};
 	
 	private GameController() {}
 	
@@ -46,6 +56,7 @@ public class GameController {
 		temp.startActivity(myIntent);
 		temp.finish();
 		updateInfoBarInGameView();
+		timer.start();
 	}
 	
 	/**
@@ -62,7 +73,7 @@ public class GameController {
 		playerController.setNumberOfPlayers(SettingsController.instance().getNumberOfPlayers());
 		wordController.resetScrabbleBag();
 		currentTurn = 1;
-		
+		timer.start();
 	}
 	
 	public void endGame() {
@@ -108,6 +119,11 @@ public class GameController {
 		ongoingGame = bool;
 	}
 	
+	//
+	public void cancelGame() {
+		timer.cancel();
+	}
+	
 	public boolean isOngoing() {
 		return ongoingGame;
 	}
@@ -115,4 +131,5 @@ public class GameController {
 	public int getCurrentTurn() {
 		return currentTurn;
 	}
+
 }
