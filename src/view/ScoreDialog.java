@@ -12,21 +12,30 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 public class ScoreDialog extends Dialog{
 	
-	private Button continueButton;
-	private GameController gController = GameController.instance();
-	private ArrayList<Player> players;
-	private String[] playerString;
-	private ListView listView = (ListView)findViewById(R.id.dialog_score_list);
-	
 	public ScoreDialog(Context context) {
 		super(context);
+		final GameController gController = GameController.instance();
 		this.setContentView(R.layout.dialog_score_view);
-		players = PlayerController.instance().getPlayersSortedByScore();
+		ArrayList<Player> players = PlayerController.instance().getPlayersSortedByScore();
+		//ListView listView = (ListView)findViewById(R.id.dialog_score_list);
+		ArrayList<String> playerString = new ArrayList<String>();
 		
-		continueButton = (Button)findViewById(R.id.continue_button);
+		
+		for (int i = 0; i < players.size(); i++) {
+			playerString.add(players.get(i).toString());
+		}
+		
+		TextView txtScore = (TextView)findViewById(R.id.scoreText);
+		String s = "";
+		for (int i = 0; i < players.size(); i++) {
+			s += playerString.get(i).toString() + ": " + players.get(i).getScore() + "\n";
+		}		
+		txtScore.setText(s);
+		Button continueButton = (Button)findViewById(R.id.continue_button);
 		continueButton.setOnClickListener(new View.OnClickListener() {		
 			
 			public void onClick(View arg0) {
@@ -34,12 +43,5 @@ public class ScoreDialog extends Dialog{
 				ScoreDialog.this.dismiss();
 			}
 		});
-		
-		for (int i = 0; i < players.size(); i++) {
-			playerString[i] = players.get(i).toString();
-		}
-		
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, 0, playerString);
-		listView.setAdapter(adapter);
 	}
 }

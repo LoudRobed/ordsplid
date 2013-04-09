@@ -2,16 +2,21 @@ package controller;
 
 import java.util.ArrayList;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.CountDownTimer;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 
 import model.Letter;
 import model.LetterList;
 import model.Word;
 
-import view.GameOverView;
+import tdt4240.ordsplid.R;
 import view.GameOverView;
 import view.GameView;
+import view.ScoreDialog;
 import view.SettingsView;
 
 
@@ -64,8 +69,18 @@ public class GameController {
 	 */
 	public void endTurn() {
 		//TODO launch scoreboard
+		ScoreDialog scoreDialog = new ScoreDialog(GameView.instance());
+		scoreDialog.show();
+//		Button dialogButton = (Button)scoreDialog.findViewById(R.id.continue_button);
+//		dialogButton.setOnClickListener(new OnClickListener() {
+//			
+//			@Override
+//			public void onClick(View v) {
+//				// TODO Auto-generated method stub
+//				nextTurn();
+//			}
+//		});
 		
-		nextTurn();
 	}
 
 

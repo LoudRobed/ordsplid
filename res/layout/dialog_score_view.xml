@@ -1,8 +1,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@color/white"
     android:orientation="vertical" >
 
 	<TextView
@@ -14,13 +12,17 @@
 	    android:text="Current Score"
 	    android:textSize="30sp" />
 
-	<ListView
-	    android:id="@+id/dialog_score_list"
-        android:layout_width="fill_parent" 
+	<EditText
+	    android:id="@+id/scoreText"
+	    android:layout_width="match_parent"
 	    android:layout_height="0dp"
-	    android:layout_weight="1"
-        android:drawSelectorOnTop="false" >
-	</ListView>
+	    android:layout_weight="0.2"
+	    android:gravity="center"
+	    android:editable="false"
+	    android:ems="10" >
+
+	    <requestFocus />
+	</EditText>
 	
 	<Button
 	    android:id="@+id/continue_button"
