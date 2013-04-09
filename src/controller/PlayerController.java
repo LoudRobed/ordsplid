@@ -58,7 +58,10 @@ public class PlayerController {
 	}
 	
 	public ArrayList<Player> getPlayersSortedByScore() {
-		ArrayList<Player> out = players;
+		ArrayList<Player> out = new ArrayList<Player>();
+		for (Player player: players) {
+			out.add(player);
+		}
 		Collections.sort(out);
 		return out;
 	}

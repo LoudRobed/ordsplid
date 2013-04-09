@@ -39,6 +39,7 @@ public class GameController {
 	 * Starts a new turn for the next player in line
 	 */
 	public void nextTurn() {
+		
 		if (PlayerController.instance().nextPlayer()) {
 			if (++currentTurn > SettingsController.instance().getNumberOfTurns()){
 				endGame();
