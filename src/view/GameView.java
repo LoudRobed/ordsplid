@@ -11,6 +11,7 @@ import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -20,6 +21,7 @@ import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
 import controller.GameController;
+import controller.SettingsController;
 import controller.Tools;
 import controller.WordController;
 
@@ -43,6 +45,16 @@ public class GameView extends Activity{
     private TextView playerNameView;
     private TextView timerView;
     
+    private CountDownTimer timer =  new CountDownTimer(SettingsController.instance().getTurnTime() * 1000, 1000) {
+		public void onTick(long millisUntilFinished) {
+			GameView.instance().setTimer("" + millisUntilFinished / 1000);
+		}
+		
+		public void onFinish() {
+			GameController.instance().endTurn();
+		}
+	};
+	
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 	    instance = this;
@@ -128,6 +140,7 @@ public class GameView extends Activity{
 			}
 		});
 	    GameController.instance().updateInfoBarInGameView();
+	    timer.start();
 	}
 	
 	private void updateOKButton() {
@@ -160,8 +173,9 @@ public class GameView extends Activity{
 		}
 		for (int i = 0; i < activeButtons.size(); i++) {
 			// Animate
-			activeButtons.get(i).animate().rotationX(360);
-			activeButtons.get(i).animate().setDuration(1000);
+			activeButtons.get(i).rotation += 360;
+			activeButtons.get(i).animate().rotationX(activeButtons.get(i).rotation);
+			activeButtons.get(i).animate().setDuration(500);
 			activeButtons.get(i).animate().setStartDelay(100);
 			// Set Letter
 			activeButtons.get(i).setLetter(newLetters.get(i));
@@ -190,7 +204,7 @@ public class GameView extends Activity{
 	           public void onClick(DialogInterface dialog, int id) {
 	        	   //GameController.instance().nextPlayer();
 	        	   GameController.instance().setOngoingGame(false);
-	        	   GameController.instance().cancelGame();
+	        	   timer.cancel();
 	        	   GameView.super.onBackPressed();
 	           }
 	       });

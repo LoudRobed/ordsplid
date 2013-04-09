@@ -81,6 +81,7 @@ public class ButtonAdapter extends BaseAdapter  {
 //Added new class to store letter-object in buttons
 class MatrixButton extends Button {
 	private Letter letter;
+	public int rotation = 0;
 		
 	public MatrixButton(Context context) {
 		super(context);

@@ -9,9 +9,7 @@ import tdt4240.ordsplid.R;
 import android.app.Dialog;
 import android.content.Context;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.TextView;
 
 public class ScoreDialog extends Dialog{
@@ -35,6 +33,7 @@ public class ScoreDialog extends Dialog{
 			s += playerString.get(i).toString() + ": " + players.get(i).getScore() + "\n";
 		}		
 		txtScore.setText(s);
+		
 		Button continueButton = (Button)findViewById(R.id.continue_button);
 		continueButton.setOnClickListener(new View.OnClickListener() {		
 			
