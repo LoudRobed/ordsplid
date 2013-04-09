@@ -59,9 +59,11 @@ public class GameController {
 	 * Called when timeout occurs, and the players turn is over
 	 */
 	public void endTurn() {
-		//TODO launch scoreboard
 		ScoreDialog scoreDialog = new ScoreDialog(GameView.instance());
-		scoreDialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL);
+		
+		//Did not work as expected, used setCanceledOnTouchOutside(false) in scoreDialog instead
+		//scoreDialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL);
+		
 		scoreDialog.show();
 //		Button dialogButton = (Button)scoreDialog.findViewById(R.id.continue_button);
 //		dialogButton.setOnClickListener(new OnClickListener() {
