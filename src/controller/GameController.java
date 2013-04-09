@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.CountDownTimer;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.WindowManager;
 import android.widget.Button;
 
 import model.Letter;
@@ -60,6 +61,7 @@ public class GameController {
 	public void endTurn() {
 		//TODO launch scoreboard
 		ScoreDialog scoreDialog = new ScoreDialog(GameView.instance());
+		scoreDialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL);
 		scoreDialog.show();
 //		Button dialogButton = (Button)scoreDialog.findViewById(R.id.continue_button);
 //		dialogButton.setOnClickListener(new OnClickListener() {
