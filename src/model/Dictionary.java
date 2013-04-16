@@ -15,7 +15,7 @@ import android.content.res.AssetManager;
  * @author Simen
  *
  */
-public class Dictionary implements IDictionary {
+public class Dictionary {
 	//HashSet for constant time when using contains().
 	HashSet<String> dictionary;
 	
@@ -44,7 +44,6 @@ public class Dictionary implements IDictionary {
 		
 	}
 	
-	@Override
 	public boolean inDictionary(String word) {
 		if (word.length() <= 1) return false;
 		boolean result = dictionary.contains(word);

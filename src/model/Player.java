@@ -1,7 +1,7 @@
 package model;
 
 
-public class Player implements IPlayer, Comparable<Player> {
+public class Player implements Comparable<Player> {
 	private int score = 0;
 	private String name;
 	private WordList submittedWords = new WordList();
@@ -10,17 +10,14 @@ public class Player implements IPlayer, Comparable<Player> {
 		this.name = name;
 	}
 	
-	@Override
 	public String getName() {
 		return name;
 	}
 
-	@Override
 	public int getScore() {
 		return score;
 	}
 
-	@Override
 	public void incrementScore(int increment) {
 		score += increment;
 	}
