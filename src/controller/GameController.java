@@ -1,24 +1,10 @@
 package controller;
 
-import java.util.ArrayList;
-
-import android.app.Dialog;
-import android.content.Intent;
-import android.os.CountDownTimer;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.WindowManager;
-import android.widget.Button;
-
-import model.Letter;
-import model.LetterList;
 import model.Word;
-
-import tdt4240.ordsplid.R;
 import view.GameOverView;
 import view.GameView;
 import view.ScoreDialog;
-import view.SettingsView;
+import android.content.Intent;
 
 
 public class GameController {
@@ -40,13 +26,6 @@ public class GameController {
 	 */
 	public void nextTurn() {
 		
-		if (PlayerController.instance().nextPlayer()) {
-			if (++currentTurn > SettingsController.instance().getNumberOfTurns()){
-				endGame();
-				return;
-			}
-			
-		}
 		WordController.instance().resetScrabbleBag();
 		Intent myIntent = new Intent(GameView.instance(), GameView.class);
 		
@@ -60,6 +39,13 @@ public class GameController {
 	 * Called when timeout occurs, and the players turn is over
 	 */
 	public void endTurn() {
+		if (PlayerController.instance().nextPlayer()) {
+			if (++currentTurn > SettingsController.instance().getNumberOfTurns()){
+				endGame();
+				return;
+			}
+			
+		}
 		ScoreDialog scoreDialog = new ScoreDialog(GameView.instance());
 		
 		//Did not work as expected, used setCanceledOnTouchOutside(false) in scoreDialog instead

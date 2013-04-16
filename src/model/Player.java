@@ -1,6 +1,5 @@
 package model;
 
-import java.util.ArrayList;
 
 public class Player implements IPlayer, Comparable<Player> {
 	private int score = 0;

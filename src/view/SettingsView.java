@@ -1,18 +1,13 @@
 package view;
 
-import controller.SettingsController;
-import model.Settings;
 import tdt4240.ordsplid.R;
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.NumberPicker;
 import android.widget.Toast;
+import controller.SettingsController;
 
 
 public class SettingsView extends Activity  {

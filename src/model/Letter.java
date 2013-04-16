@@ -1,6 +1,5 @@
 package model;
 
-import android.graphics.Color;
 
 /**
  * Letter class. Contains information about each letter

@@ -3,8 +3,6 @@ package controller;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import view.GameView;
-
 import model.Player;
 import model.Word;
 

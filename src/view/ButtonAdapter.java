@@ -14,7 +14,6 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import controller.MainController;
 import controller.WordController;
 
 public class ButtonAdapter extends BaseAdapter  {

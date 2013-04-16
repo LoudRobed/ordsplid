@@ -1,11 +1,8 @@
 package controller;
 
 import model.Settings;
-import view.GameView;
 import view.SettingsView;
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.view.View;
