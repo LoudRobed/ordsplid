@@ -28,6 +28,10 @@ public class Word extends ArrayList<Letter> {
 		return out;
 	}
 	
+	/**
+	 * Calculates the score of the written word
+	 * @return int score
+	 */
 	public int getWordScore() {
 		int score = 0;
 		for (int i = 0; i < size(); i++) {

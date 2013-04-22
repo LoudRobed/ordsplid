@@ -12,7 +12,10 @@ public class PlayerController {
 	private static PlayerController instance;
 	
 	private PlayerController() {}
-	
+	/**
+	 * Singleton instantiation
+	 * @return PlayerController object
+	 */
 	public static PlayerController instance() {
 		if (instance == null) instance = new PlayerController();
 		return instance;
@@ -55,6 +58,10 @@ public class PlayerController {
 		return newRound;
 	}
 	
+	/**
+	 * Returns a list of the players sorted by score
+	 * @return List of players
+	 */
 	public ArrayList<Player> getPlayersSortedByScore() {
 		ArrayList<Player> out = new ArrayList<Player>();
 		for (Player player: players) {

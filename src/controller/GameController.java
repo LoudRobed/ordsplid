@@ -16,6 +16,10 @@ public class GameController {
 	
 	private GameController() {}
 	
+	/**
+	 * Singleton instantiation
+	 * @return GameController object
+	 */
 	public static GameController instance() {
 		if (instance == null) instance = new GameController();
 		return instance;
@@ -47,23 +51,8 @@ public class GameController {
 			
 		}
 		ScoreDialog scoreDialog = new ScoreDialog(GameView.instance());
-		
-		//Did not work as expected, used setCanceledOnTouchOutside(false) in scoreDialog instead
-		//scoreDialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL);
-		
 		scoreDialog.show();
-//		Button dialogButton = (Button)scoreDialog.findViewById(R.id.continue_button);
-//		dialogButton.setOnClickListener(new OnClickListener() {
-//			
-//			@Override
-//			public void onClick(View v) {
-//				// TODO Auto-generated method stub
-//				nextTurn();
-//			}
-//		});
-		
 	}
-
 
 	public void newGame() {
 		playerController.setNumberOfPlayers(SettingsController.instance().getNumberOfPlayers());
@@ -79,6 +68,10 @@ public class GameController {
 		GameView.instance().finish();
 	}
 	
+	/**
+	 * Submits the written word, updates the score, switches the letter in the matrix and returns the used letters to the scrabblebag
+	 * @param word the written word
+	 */
 	public void submitWord(Word word) {
 		int wordScore = word.getWordScore();
 		
@@ -91,6 +84,9 @@ public class GameController {
 		updateScoreInGameView();
 	}
 	
+	/**
+	 * Updates the scoredisplay and playerdisplay
+	 */
 	public void updateInfoBarInGameView() {
 		updateScoreInGameView();
 		updatePlayerNameInGameView();
@@ -113,9 +109,6 @@ public class GameController {
 		}
 		ongoingGame = bool;
 	}
-	
-	//
-
 	
 	public boolean isOngoing() {
 		return ongoingGame;

@@ -13,6 +13,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+/**
+ * Class for creating a scoredialog that pops up between rounds during a game, to display the ranking and the current score of each player.
+ * @author Finn
+ *
+ */
 public class ScoreDialog extends Dialog{
 	
 	public ScoreDialog(Context context) {
@@ -20,25 +25,14 @@ public class ScoreDialog extends Dialog{
 		final GameController gController = GameController.instance();
 		this.setContentView(R.layout.dialog_score_view);
 		ArrayList<Player> players = PlayerController.instance().getPlayersSortedByScore();
-		//ListView listView = (ListView)findViewById(R.id.dialog_score_list);
-		//ArrayList<String> playerString = new ArrayList<String>();
-		
-		/*
-		for (int i = 0; i < players.size(); i++) {
-			playerString.add(players.get(i).toString());
-		}
-		*/
-		
+
 		TextView txtScore = (TextView)findViewById(R.id.scoreText);
 		String s = "";
 		for (int i = 0; i < players.size(); i++) {
 			s += players.get(i).getPlayerInfo() + "\n";
 		}		
 		txtScore.setText(s);
-		
-		//Removed flag in gamecontroller, and used this instead.
 		setCanceledOnTouchOutside(false);
-		
 		final Button continueButton = (Button)findViewById(R.id.continue_button);
 		
 		

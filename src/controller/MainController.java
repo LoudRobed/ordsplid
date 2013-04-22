@@ -12,6 +12,10 @@ public class MainController {
 		return instance;
 	}
 	
+	/**
+	 * Creates a new dictionary for the game and imports the settings
+	 * @param context
+	 */
 	public void onStartup(Context context) {
 		WordController.instance().buildDictionary(context);
 		SettingsController.instance().readSettingsFromStorage(context);

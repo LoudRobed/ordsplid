@@ -11,6 +11,9 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import controller.MainController;
 
+/**
+ * Class for the mainview for our application, displaying the startup screen with the main menu.
+ */
 public class MainView extends Activity  {
 	private ProgressBar bar;
 	boolean finishedLoading = false;

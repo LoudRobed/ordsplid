@@ -14,6 +14,11 @@ public class WordController {
 	private Dictionary dictionary;
 	private ScrabbleBag bag = new ScrabbleBag();
 	
+	/**
+	 * Checks if the written word exists in the dictionary
+	 * @param word
+	 * @return true or false
+	 */
 	public boolean checkWord(Word word) {
 		boolean inDictionary = dictionary.inDictionary(word.toString());
 		return inDictionary;

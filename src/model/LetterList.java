@@ -25,7 +25,7 @@ public class LetterList {
 	
 	/**
 	 * Will return the singleton object, if no such object exists, one will be created.
-	 * @return
+	 * @return LetterList object
 	 */
 	static public LetterList instance() {
 		if (instance == null) instance = new LetterList();
@@ -49,7 +49,7 @@ public class LetterList {
 	/**
 	 * Takes a Character and returns the letter object corresponding to the input object
 	 * @param c
-	 * @return
+	 * @return letterobject corresponding to the char
 	 */
 	public Letter get(Character c) {
 		return list.get((int) c.charValue() - 97);

@@ -25,6 +25,9 @@ import controller.SettingsController;
 import controller.Tools;
 import controller.WordController;
 
+/**
+ * Class for the view of the game. Showing the current running game.
+ */
 public class GameView extends Activity{
 	static private GameView instance;
 	

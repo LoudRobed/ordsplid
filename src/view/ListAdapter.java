@@ -12,6 +12,11 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
 import controller.PlayerController;
 
+/**
+ * Adapterclass for a List used in the GameOverView.
+ * @author Simen
+ *
+ */
 public class ListAdapter extends BaseExpandableListAdapter {
 	Context mContext;
 	public ListAdapter(Context context){

@@ -16,6 +16,9 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import controller.WordController;
 
+/**
+ * Adapterclass for creating all the buttons used in the matrix during the game.
+ */
 public class ButtonAdapter extends BaseAdapter  {
 	private Context mContext;
 	private WordController wController = WordController.instance();

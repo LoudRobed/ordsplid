@@ -13,6 +13,11 @@ import android.widget.Button;
 import android.widget.ExpandableListView.ExpandableListContextMenuInfo;
 import android.widget.TextView;
 
+/**
+ * Class for creating a view with a List of all the players, their score and written words when the game is completed.
+ * @author Simen
+ *
+ */
 public class GameOverView extends ExpandableListActivity {
 
     ListAdapter mAdapter;
