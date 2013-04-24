@@ -6,20 +6,18 @@ import java.util.Collections;
 
 /**
  * Class that contains all the different letters used in the game.
- * Statistics about points and probability are collected from scrabble.
- * 
- * @author Simen
+ * Statistics about points and probability are collected from Scrabble.
  *
  */
-public class LetterList {
-	private static LetterList instance = null;
+public class Alphabet {
+	private static Alphabet instance = null;
 	
 	private ArrayList<Letter> list = new ArrayList<Letter>();
 	
 	/**
 	 * Once initialized, this CharList contains every letter of the english alphabet, with probabilities and points.
 	 */
-	private LetterList() {
+	private Alphabet() {
 		fillList();
 	}
 	
@@ -27,8 +25,8 @@ public class LetterList {
 	 * Will return the singleton object, if no such object exists, one will be created.
 	 * @return LetterList object
 	 */
-	static public LetterList instance() {
-		if (instance == null) instance = new LetterList();
+	static public Alphabet instance() {
+		if (instance == null) instance = new Alphabet();
 		return instance;
 	}
 	

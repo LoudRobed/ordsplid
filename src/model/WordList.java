@@ -3,8 +3,17 @@ package model;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
+
+/**
+ * Class used to collect words, and keep statistics
+ *
+ */
 public class WordList extends ArrayList<Word> {
 	
+	/**
+	 * Returns an array of strings with information about the words contained in the list
+	 * @return string array
+	 */
 	public ArrayList<String> getStatistics() {
 		ArrayList<String> out = new ArrayList<String>();
 		if (size() <= 0) return out;

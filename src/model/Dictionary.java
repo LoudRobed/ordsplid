@@ -11,12 +11,10 @@ import android.content.Context;
 import android.content.res.AssetManager;
 
 /**
- * Sample class to show how a dictionary can be utilized.
- * @author Simen
+ * Dictionary class. Reads all words in a file to memory.
  *
  */
 public class Dictionary {
-	//HashSet for constant time when using contains().
 	HashSet<String> dictionary;
 	
 	public Dictionary(Context context) {

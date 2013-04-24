@@ -29,12 +29,6 @@ import controller.WordController;
  * Class for the view of the game. Showing the current running game.
  */
 public class GameView extends Activity{
-	static private GameView instance;
-	
-	public static GameView instance() {
-		return instance;
-	}
-	
 	private ButtonAdapter btnAdapter;
 	private String s = "";
 	private WordController wController = WordController.instance();
@@ -50,25 +44,23 @@ public class GameView extends Activity{
     
     private CountDownTimer timer =  new CountDownTimer(SettingsController.instance().getTurnTime() * 1000, 1000) {
 		public void onTick(long millisUntilFinished) {
-			GameView.instance().setTimer("" + millisUntilFinished / 1000);
+			GameView.this.setTimer("" + millisUntilFinished / 1000);
 		}
 		
 		public void onFinish() {
-			GameView.instance().setTimer("0");
+			GameView.this.setTimer("0");
 			GameController.instance().endTurn();
 		}
 	};
 	
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
-	    instance = this;
 
 	    GameController.instance().setOngoingGame(true);
+	    GameController.instance().setGameView(this);
 
-	    //Remove title bar
     	this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-    	//this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
+    	
 	    setContentView(R.layout.activity_game_view);
 
 	    activeButtons = new ArrayList<MatrixButton>();

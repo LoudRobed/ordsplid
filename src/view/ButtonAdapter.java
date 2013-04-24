@@ -25,7 +25,6 @@ public class ButtonAdapter extends BaseAdapter  {
 	private ArrayList<Letter> s = wController.retrieveNewLettersFromBag(16);
 	private ArrayList<Button> buttonList = new ArrayList<Button>();
 	
-	
     // Declare button click listener variable
     private OnClickListener mOnButtonClick;
 
@@ -50,10 +49,6 @@ public class ButtonAdapter extends BaseAdapter  {
         return 0;
     }
 
-    public ArrayList<Letter> getInUseList(){
-    	return s;
-    }
-    
       
     // create a new ImageView for each item referenced by the Adapter
     @SuppressWarnings("null")
@@ -81,8 +76,9 @@ public class ButtonAdapter extends BaseAdapter  {
     }
 }
 
-
-//Added new class to store letter-object in buttons
+/**
+ * Button class with letters and animation
+ */
 class MatrixButton extends Button {
 	private Letter letter;
 	private int rotation = 0;
@@ -92,16 +88,10 @@ class MatrixButton extends Button {
 		setDeselected();
 	}
 	
-	public void getDrawingRect(RectF rectangle) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	public void setLetter(Letter letter) {
 		this.letter = letter;
-		//setText(toString());
-		
-		
+	
 		String styledText = "<big><big> <font color='0x000000'>"
 	            + toString() + "</font> </big></big>" 
 	            + "<small><small><small <font color='0x000000'>" + getLetterPoints() + "</small></small></small>";
@@ -110,8 +100,6 @@ class MatrixButton extends Button {
 		
 		Typeface font = Typeface.createFromAsset(getContext().getAssets(), "Zag Bold.otf");
 		setTypeface(font);
-					
-		
 	}
 	
 	public void setLetterPoints(Letter letter) {

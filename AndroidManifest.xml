@@ -13,7 +13,7 @@
         
         android:theme="@style/AppTheme" >
         <activity
-            android:name="view.MainActivity"
+            android:name="view.MainView"
             android:screenOrientation="portrait"
             android:label="@string/title_activity_ordsplid" >
             <intent-filter>

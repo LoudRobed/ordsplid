@@ -1,6 +1,5 @@
 package model;
 
-
 public class Player implements Comparable<Player> {
 	private int score = 0;
 	private String name;

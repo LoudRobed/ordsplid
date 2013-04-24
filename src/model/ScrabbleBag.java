@@ -7,16 +7,16 @@ import java.util.ArrayList;
  * 
  * It is up to the user to make sure that all letters removed are also returned at some point.
  * If not the bag might run out of letters, and the probabilities will no longer work correctly.
- * @author Simen
+ *
  *
  */
 public class ScrabbleBag {
-	private LetterList list;
+	private Alphabet list;
 	private ArrayList<Letter> bag = new ArrayList<Letter>();
 	
 	
 	public ScrabbleBag() {
-		list = LetterList.instance();
+		list = Alphabet.instance();
 		fillBag();
 	}
 	
@@ -32,7 +32,6 @@ public class ScrabbleBag {
 	/**
 	 * Removes a random letter from bag
 	 * @return Random letter
-	 * @throws ScrabbleBagException 
 	 */
 	public Letter getRandomLetter() {
 		if (bag.size() <= 0) {
@@ -52,12 +51,10 @@ public class ScrabbleBag {
 	 */
 	public void returnLetter(Letter l) {
 		if (bag.size() > Constants.BAG_SIZE) {
-			//throw new ScrabbleBagException("Bag has reached maximum size");
 			System.err.println("Bag has reached maximum size");
 			return;
 		}
 		if (countLetter(l) >= l.getTotalPieces()) {
-			//throw new ScrabbleBagException("Nocando. Bag is already full of " + l.getLetter());
 			System.err.println("Nocando. Bag is already full of " + l.getLetter());
 			return;
 		}

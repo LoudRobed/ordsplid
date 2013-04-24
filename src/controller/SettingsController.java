@@ -12,6 +12,9 @@ public class SettingsController {
 	private static Settings settings;
 	private static SettingsController instance = null;
 	
+	/**
+	 * Initialize settings controller
+	 */
 	private SettingsController() {
 		settings = new Settings();
 		settings.setNumberOfPlayers(1);
@@ -19,6 +22,10 @@ public class SettingsController {
 		settings.setTurnTime(30);
 	}
 	
+	/**
+	 * Singleton instance method
+	 * @return
+	 */
 	static public SettingsController instance() {
 		if (instance == null) instance = new SettingsController();
 		return instance;
@@ -31,8 +38,6 @@ public class SettingsController {
 		settings.setTurnTime(preferences.getInt("turnTime", 30));
 	}
 	
-	
-	
 	public void writeSettingsToStorage(Context context) {
 		SharedPreferences preferences = context.getSharedPreferences("settings",0);
 		Editor edit = preferences.edit();
@@ -43,28 +48,32 @@ public class SettingsController {
 	}
 	
 	static public class SettingsViewButtonListener implements OnClickListener {
+		SettingsController settingsController = SettingsController.instance();
+		SettingsView settingsView;
+		
+		public SettingsViewButtonListener(SettingsView view) {
+			settingsView = view;
+		}
+		
 		public void onClick(View v) {
 			
 			try {
-				int numberOfPlayers = Integer.parseInt(SettingsView.instance().getNumberOfPlayers());
+				int numberOfPlayers = Integer.parseInt(settingsView.getNumberOfPlayers());
 				settings.setNumberOfPlayers(numberOfPlayers);
 			} catch(NumberFormatException e) {}
 			
 			try {
-				int turnTime = Integer.parseInt(SettingsView.instance().getTurnTime());
+				int turnTime = Integer.parseInt(settingsView.getTurnTime());
 				settings.setTurnTime(turnTime);
 			} catch(NumberFormatException e) {}
 			
 			try {
-				int numberOfTurns = Integer.parseInt(SettingsView.instance().getNumberOfTurns());
+				int numberOfTurns = Integer.parseInt(settingsView.getNumberOfTurns());
 				settings.setNumberOfTurns(numberOfTurns);
 			} catch(NumberFormatException e) {}
 			
-			
-			
-			SettingsController.instance().writeSettingsToStorage(SettingsView.instance());
-			SettingsView.instance().finish();
-						
+			settingsController.writeSettingsToStorage(settingsView);
+			settingsView.finish();
 		}
 	}
 	
@@ -78,6 +87,5 @@ public class SettingsController {
 	
 	public int getNumberOfTurns() {
 		return settings.getNumberOfTurns();
-	}
-	
+	}	
 }

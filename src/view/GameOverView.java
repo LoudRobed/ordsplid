@@ -15,7 +15,6 @@ import android.widget.TextView;
 
 /**
  * Class for creating a view with a List of all the players, their score and written words when the game is completed.
- * @author Simen
  *
  */
 public class GameOverView extends ExpandableListActivity {
@@ -45,31 +44,10 @@ public class GameOverView extends ExpandableListActivity {
 
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
-        menu.setHeaderTitle("Menu");
-        menu.add(0, 0, 0, "Menu");
     }
     
     @Override
     public boolean onContextItemSelected(MenuItem item) {
-        ExpandableListContextMenuInfo info = (ExpandableListContextMenuInfo) item.getMenuInfo();
-
-        String title = ((TextView) info.targetView).getText().toString();
-        
-        /* 
-        int type = ExpandableListView.getPackedPositionType(info.packedPosition);
-        if (type == ExpandableListView.PACKED_POSITION_TYPE_CHILD) {
-            int groupPos = ExpandableListView.getPackedPositionGroup(info.packedPosition); 
-            int childPos = ExpandableListView.getPackedPositionChild(info.packedPosition); 
-            Toast.makeText(this, title + ": Child " + childPos + " clicked in group " + groupPos,
-                    Toast.LENGTH_SHORT).show();
-            return true;
-        } else if (type == ExpandableListView.PACKED_POSITION_TYPE_GROUP) {
-            int groupPos = ExpandableListView.getPackedPositionGroup(info.packedPosition); 
-            Toast.makeText(this, title + ": Group " + groupPos + " clicked", Toast.LENGTH_SHORT).show();
-            return true;
-        }
-        */
-        
         return false;
     }
 

@@ -45,7 +45,7 @@ public class ScoreDialog extends Dialog{
 		new Thread(new Runnable() {
 	        public void run() {
 	        	try {
-					Thread.sleep(500);
+					Thread.sleep(600);
 				} catch (InterruptedException e) {}
 	        	handler.post(new Runnable() {
 					@Override

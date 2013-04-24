@@ -3,7 +3,6 @@ package model;
 
 /**
  * Letter class. Contains information about each letter
- * @author Simen
  *
  */
 public class Letter implements Comparable<Letter> {

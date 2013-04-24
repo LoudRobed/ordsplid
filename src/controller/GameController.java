@@ -11,6 +11,7 @@ public class GameController {
 	private static GameController instance = null;
 	private WordController wordController = WordController.instance();
 	private PlayerController playerController = PlayerController.instance();
+	private GameView gameView;
 	private boolean ongoingGame = false;
 	private int currentTurn;
 	
@@ -25,15 +26,19 @@ public class GameController {
 		return instance;
 	} 
 	
+	public void setGameView(GameView view) {
+		gameView = view;
+	} 
+	
 	/**
 	 * Starts a new turn for the next player in line
 	 */
 	public void nextTurn() {
 		
 		WordController.instance().resetScrabbleBag();
-		Intent myIntent = new Intent(GameView.instance(), GameView.class);
+		Intent myIntent = new Intent(gameView, GameView.class);
 		
-		GameView temp = GameView.instance();
+		GameView temp = gameView;
 		temp.startActivity(myIntent);
 		temp.finish();
 		updateInfoBarInGameView();
@@ -50,7 +55,7 @@ public class GameController {
 			}
 			
 		}
-		ScoreDialog scoreDialog = new ScoreDialog(GameView.instance());
+		ScoreDialog scoreDialog = new ScoreDialog(gameView);
 		scoreDialog.show();
 	}
 
@@ -63,9 +68,9 @@ public class GameController {
 	public void endGame() {
 		setOngoingGame(false);
 		
-		Intent myIntent = new Intent(GameView.instance(), GameOverView.class);
-		GameView.instance().startActivity(myIntent);
-		GameView.instance().finish();
+		Intent myIntent = new Intent(gameView, GameOverView.class);
+		gameView.startActivity(myIntent);
+		gameView.finish();
 	}
 	
 	/**
@@ -79,8 +84,8 @@ public class GameController {
 		playerController.addWordToCurrentPlayer(word);
 		
 		word = wordController.retrieveNewLettersFromBag(word.size());
-		GameView.instance().switchLetters(word);
-		GameView.instance().displayToast("Word score: " + wordScore);
+		gameView.switchLetters(word);
+		gameView.displayToast("Word score: " + wordScore);
 		updateScoreInGameView();
 	}
 	
@@ -94,13 +99,13 @@ public class GameController {
 	
 	private void updateScoreInGameView() {
 		int playerScore = playerController.getScoreForCurrentPlayer();
-		GameView.instance().setScore("" + playerScore);
+		gameView.setScore("" + playerScore);
 	}
 	
 	private void updatePlayerNameInGameView() {
 		String name = PlayerController.instance().getNameOfCurrentPlayer();
 		
-		GameView.instance().setPlayerName(name);
+		gameView.setPlayerName(name);
 	}
 
 	public void setOngoingGame(boolean bool) {

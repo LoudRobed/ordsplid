@@ -2,6 +2,10 @@ package model;
 
 import java.util.ArrayList;
 
+/**
+ * List of letters used to form a word
+ *
+ */
 public class Word extends ArrayList<Letter> {
 
 	public Word(ArrayList<Letter> word) {
@@ -23,7 +27,7 @@ public class Word extends ArrayList<Letter> {
 	private Word stringToWord(String input) {
 		Word out = new Word();
 		for (int i = 0; i < input.length(); i++) {
-			out.add(LetterList.instance().get(Character.valueOf(input.charAt(i))));
+			out.add(Alphabet.instance().get(Character.valueOf(input.charAt(i))));
 		}
 		return out;
 	}
