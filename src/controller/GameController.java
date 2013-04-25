@@ -90,7 +90,7 @@ public class GameController {
 	}
 	
 	/**
-	 * Updates the scoredisplay and playerdisplay
+	 * Updates the score display and player display
 	 */
 	public void updateInfoBarInGameView() {
 		updateScoreInGameView();
